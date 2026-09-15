@@ -1,12 +1,13 @@
+import style from "./AppSidebar.module.css";
 
-const appSidebar = () => {
+const AppSidebar = () => {
   return (
-    <aside className="bg-red-700">
-      <div></div>
-      <div>
-        <nav>
-          <ul className="bg-red-700">
-            <li>داشبورد</li>
+    <aside className={` ${style.aside} h-screen bg-surface-secondary`}>
+      <div className="">Logo</div>
+      <div className="flex flex-col justify-between">
+        <nav className="">
+          <ul className="bg-green-400">
+            <li>کامیاب</li>
             <li>فاکتور جدید</li>
             <li>فاکتورها</li>
             <li>مشتریان</li>
@@ -15,7 +16,7 @@ const appSidebar = () => {
             <li>تنظیمات</li>
           </ul>
         </nav>
-        <nav>
+        <nav className="">
           <ul>
             <li>پشتیبانی</li>
             <li>خروج</li>
@@ -26,4 +27,4 @@ const appSidebar = () => {
   );
 };
 
-export default appSidebar;
+export default AppSidebar;
