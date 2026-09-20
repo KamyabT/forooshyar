@@ -1,3 +1,5 @@
+import type { LucideIcon } from "lucide-react";
+
 export interface Customer {
   id: string;
   name: string;
@@ -26,3 +28,11 @@ export interface Invoice {
   status: "draft" | "sent" | "paid" | "cancelled";
   date: string;
 }
+
+export type StatsCardProps = {
+  title: string;
+  value: string;
+  color: string;
+  IconBg: string;
+  Icon: LucideIcon;
+};
