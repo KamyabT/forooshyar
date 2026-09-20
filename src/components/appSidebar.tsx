@@ -1,4 +1,7 @@
 import Link from "next/link";
+import Image from "next/image";
+
+import Logo from "../../public/img/logo.png";
 
 import style from "./AppSidebar.module.css";
 import {
@@ -16,9 +19,11 @@ import {
 const AppSidebar = () => {
   return (
     <aside
-      className={`${style.aside} flex h-screen flex-col bg-surface-secondary px-4 py-6 text-sm font-medium`}
+      className={`${style.aside} flex h-screen flex-col bg-surface-secondary px-4 pb-6 pt-2 text-sm font-medium`}
     >
-      <div className="mb-5">Logo</div>
+      <div className="mb-2 flex items-center justify-start">
+        <Image src={Logo} alt="Logo" width={175} height={175} />
+      </div>
 
       <div className="flex flex-1 flex-col justify-between">
         <nav>

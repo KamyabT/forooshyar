@@ -2,9 +2,9 @@ import AppSidebar from "@/components/AppSidebar";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main className="flex">
+    <div className="flex">
       <AppSidebar />
-      {children}
-    </main>
+      <main>{children}</main>
+    </div>
   );
 }
