@@ -6,8 +6,8 @@ const StatsCard = ({ title, Icon, value, color, IconBg }: StatsCardProps) => {
     <div className="flex flex-col bg-background gap-2 rounded-lg p-4 shadow-md">
       <div className="flex justify-between items-center">
         <div>
-          <p className="text-muted-foreground font-bold">{title}</p>
-          <p className="font-bold text-[22px]">{value}</p>
+          <p className="text-muted-foreground text-[14px] font-bold">{title}</p>
+          <p className="font-extrabold text-[22px]">{value}</p>
         </div>
         <div className={`p-3 rounded-xl`} style={{ backgroundColor: IconBg }}>
           <span className="bg-green w-full h-full">

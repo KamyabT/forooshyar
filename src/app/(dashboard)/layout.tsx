@@ -5,9 +5,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   return (
     <div className="flex">
       <AppSidebar />
-      <div className="w-full p-5">
+      <div className="w-full">
         <AppHeader />
-        <main>{children}</main>
+        <main className=" p-5">{children}</main>
       </div>
     </div>
   );

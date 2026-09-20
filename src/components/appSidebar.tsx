@@ -19,7 +19,7 @@ import {
 const AppSidebar = () => {
   return (
     <aside
-      className={`${style.aside} flex h-screen flex-col bg-surface-secondary px-4 pb-6 pt-2 text-sm font-medium border-l-1 border-gray-500`}
+      className={`${style.aside} flex h-screen flex-col bg-surface-secondary px-4 pb-6 pt-2 text-sm font-medium border-l-1 border-gray-300 drop-shadow-sm`}
     >
       <div className="mb-2 flex items-center justify-start">
         <Image src={Logo} alt="Logo" width={175} height={175} />
