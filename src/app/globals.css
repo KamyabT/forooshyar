@@ -90,7 +90,7 @@
 
 body {
   margin: 0;
-  background: var(--background);
+  background: var(--surface-secondary);
   color: var(--text-primary);
   font-family: "IRANSans", sans-serif;
   font-size: 14px;
