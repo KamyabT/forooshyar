@@ -35,7 +35,7 @@ const AppSidebar = () => {
               </Link>
             </li>
             <li className="flex items-center p-3 text-[16px] rounded-lg hover:bg-primary-hover hover:text-primary">
-              <Link className="flex items-center gap-3" href="/newInvoice">
+              <Link className="flex items-center gap-3" href="/invoices/new">
                 <FilePlusCorner size={20} />
                 <span>فاکتور جدید</span>
               </Link>
