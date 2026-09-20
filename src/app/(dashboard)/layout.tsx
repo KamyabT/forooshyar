@@ -1,10 +1,14 @@
+import AppHeader from "@/components/AppHeader";
 import AppSidebar from "@/components/AppSidebar";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <main className="flex">
+    <div className="flex">
       <AppSidebar />
-      <section>{children}</section>
-    </main>
+      <div className="w-full">
+        <AppHeader />
+        <main>{children}</main>
+      </div>
+    </div>
   );
 }
