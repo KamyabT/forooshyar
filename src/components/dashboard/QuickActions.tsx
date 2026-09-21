@@ -16,7 +16,7 @@ const QuickActions = () => {
               <UserPlus size={32} color="#0611d7" />
             </div>
             <p className="text-primary text-center font-bold">افزودن مشتری</p>
-            <p>ثبت مشتری جدید</p>
+            <p className="text-center">ثبت مشتری جدید</p>
           </Link>
           <Link
             href="/invoices/new"
@@ -26,7 +26,7 @@ const QuickActions = () => {
               <FilePlusCorner size={32} color="#16a34a" />
             </div>
             <p className="text-success text-center font-bold">فاکتور جدید</p>
-            <p>ساخت فاکتور فروش</p>
+            <p className="text-center">ساخت فاکتور فروش</p>
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-4">
@@ -38,7 +38,7 @@ const QuickActions = () => {
               <Layers size={32} color="#0611d7" />
             </div>
             <p className="text-primary text-center font-bold">مشاهده فاکتورها</p>
-            <p>لیست همه فاکتورها</p>
+            <p className="text-center">لیست همه فاکتورها</p>
           </Link>
           <Link
             href="/products"
@@ -48,7 +48,7 @@ const QuickActions = () => {
               <ShelvingUnit size={32} color="#0611d7" />
             </div>
             <p className="text-primary text-center font-bold">مدیریت محصولات</p>
-            <p>مشاهده و ویرایش</p>
+            <p className="text-center">مشاهده و ویرایش</p>
           </Link>
         </div>
       </div>
