@@ -44,11 +44,11 @@ export default function Dashboard() {
           IconBg="#fef3da"
         />
       </section>
-      <section className="flex justify-between gap-4 my-5">
-        <div>
+      <section className="grid grid-cols-[2fr_4fr] gap-4 my-5">
+        <div className="grid">
           <QuickActions />
         </div>
-        <div>
+        <div className="grid">
           <SalesChart />
         </div>
       </section>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { StatsCardProps } from "@/types";
 import { MoveLeft } from "lucide-react";
 
@@ -16,12 +17,15 @@ const StatsCard = ({ title, Icon, value, color, IconBg }: StatsCardProps) => {
         </div>
       </div>
       <div>
-        <a href="#" className="flex align-center cursor-pointer">
+        <Link
+          href="#"
+          className="flex align-center cursor-pointer transition-all duration-200 hover:drop-shadow-sm"
+        >
           <span className="me-2 text-primary font-medium">مشاهده</span>
           <span className="flex align-center">
-            <MoveLeft strokeWidth={1.5} size={24} color="#0611d7"/>
+            <MoveLeft strokeWidth={1.5} size={24} color="#0611d7" />
           </span>
-        </a>
+        </Link>
       </div>
     </div>
   );

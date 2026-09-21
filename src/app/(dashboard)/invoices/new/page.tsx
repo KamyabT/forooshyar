@@ -1,7 +1,7 @@
 const InvoiceGeneratorPage = () => {
   return (
     <div>
-      <div>hiii</div>
+      <div>New Invoice</div>
     </div>
   );
 };
