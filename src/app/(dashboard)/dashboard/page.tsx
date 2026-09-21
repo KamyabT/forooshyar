@@ -1,4 +1,6 @@
+import QuickActions from "@/components/dashboard/QuickActions";
 import StatsCard from "@/components/dashboard/StatsCard";
+import SalesChart from "@/components/dashboard/SalesChart";
 
 import { Users, ReceiptText, StickyNoteX, ShoppingCart } from "lucide-react";
 
@@ -42,9 +44,13 @@ export default function Dashboard() {
           IconBg="#fef3da"
         />
       </section>
-      <section>
-        <div>quick action</div>
-        <div>chart</div>
+      <section className="flex justify-between gap-4 my-5">
+        <div>
+          <QuickActions />
+        </div>
+        <div>
+          <SalesChart />
+        </div>
       </section>
       <section>
         <div>latest customers</div>
