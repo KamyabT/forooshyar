@@ -9,10 +9,12 @@ export default function Dashboard() {
     <>
       <section className="flex items-center justify-between">
         <div>
-          <p>خوش آمدید کامیاب</p>
-          <span>در اینجا خلاصه از وضعیت کسب و کارتان را میبینید</span>
+          <p className="font-bold text-[24px]">خوش آمدید، کامیاب!</p>
+          <span className="font-normal text-[16px]">در اینجا خلاصه از وضعیت کسب و کارتان را میبینید</span>
         </div>
-        <div>دوشنبه 23 شهریور 1405</div>
+        <div>
+          <p className="font-bold text-[14px]">دوشنبه 23 شهریور 1405</p>
+        </div>
       </section>
       <section className="grid grid-cols-4 gap-4 my-5">
         <StatsCard
