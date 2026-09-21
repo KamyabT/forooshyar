@@ -12,7 +12,7 @@ export default function Dashboard() {
         </div>
         <div>دوشنبه 23 شهریور 1405</div>
       </section>
-      <section className="grid grid-cols-4 gap-4 mt-5">
+      <section className="grid grid-cols-4 gap-4 my-5">
         <StatsCard
           title="مجموع فروش این ماه"
           value="10,000,000 تومان"
