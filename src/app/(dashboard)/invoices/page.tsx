@@ -1,3 +1,8 @@
+import { metadata } from "@/app/layout";
+
+metadata.title = "Invoices";
+
+
 const InvoicesPage = () => {
   return (
     <div>

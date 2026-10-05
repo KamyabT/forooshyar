@@ -1,21 +1,17 @@
 import QuickActions from "@/components/dashboard/QuickActions";
 import StatsCard from "@/components/dashboard/StatsCard";
 import SalesChart from "@/components/dashboard/SalesChart";
+import PageHeader from "@/components/ui/pageHeader";
 
 import { Users, ReceiptText, StickyNoteX, ShoppingCart } from "lucide-react";
 
 export default function Dashboard() {
   return (
     <>
-      <section className="flex items-center justify-between">
-        <div>
-          <p className="font-bold text-[24px]">خوش آمدید، کامیاب!</p>
-          <span className="font-normal text-[16px]">در اینجا خلاصه از وضعیت کسب و کارتان را میبینید</span>
-        </div>
-        <div>
-          <p className="font-bold text-[14px]">دوشنبه 23 شهریور 1405</p>
-        </div>
-      </section>
+      <PageHeader
+        title="خوش آمدید، کامیاب!"
+        description="در اینجا خلاصه از وضعیت کسب و کارتان را میبینید"
+      />
       <section className="grid grid-cols-4 gap-4 my-5">
         <StatsCard
           title="مجموع فروش این ماه"

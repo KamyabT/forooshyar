@@ -36,3 +36,10 @@ export type StatsCardProps = {
   IconBg: string;
   Icon: LucideIcon;
 };
+
+
+
+export type PageHeaderProps = {
+  title: string;
+  description: string;
+};
