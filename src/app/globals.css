@@ -8,6 +8,7 @@
   --surface-secondary: #f1f5f9;
 
   --primary: #0611d7;
+  --primary-secondary: #0651ff;
   --primary-hover: #d8e4fe;
   --primary-light: #dce8fe;
   --primary-soft: #dbeafe;
@@ -40,6 +41,8 @@
   --color-surface-secondary: var(--surface-secondary);
 
   --color-primary: var(--primary);
+  --color-primary-secondary: var(--primary-secondary);
+
   --color-primary-hover: var(--primary-hover);
   --color-primary-light: var(--primary-light);
   --color-primary-soft: var(--primary-soft);
