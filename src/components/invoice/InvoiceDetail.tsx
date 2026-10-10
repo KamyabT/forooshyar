@@ -6,7 +6,7 @@ const InvoiceDetail = () => {
   billNumberGenerator()
   return (
     <div className="bg-white p-4 rounded-lg shadow">
-      <div className="flex items-center mb-3">
+      <div className="flex items-center mb-3 gap-2">
         <ReceiptText />
         <h3>اطلاعات فاکتور</h3>
       </div>
