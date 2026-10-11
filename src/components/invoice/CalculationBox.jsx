@@ -1,6 +1,8 @@
 import { Calculator } from "lucide-react";
 
-const Calculation = () => {
+const Calculation = ({ totalPrice, items }) => {
+  const InvoiceTotal = items.reduce((sum, item) => sum + totalPrice(item), 0);
+
   return (
     <div className=" bg-white p-4 rounded-lg shadow">
       <div className="flex items-center gap-2 mb-3">
@@ -22,7 +24,7 @@ const Calculation = () => {
         </div>
         <div className="flex justify-between">
           <p>مبلغ نهایی</p>
-          <p>0 تومان</p>
+          <p>{InvoiceTotal}</p>
         </div>
       </div>
     </div>

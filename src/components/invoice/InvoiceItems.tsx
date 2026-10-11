@@ -3,19 +3,9 @@
 import { InvoiceItemType } from "@/types";
 import InvoiceItem from "./invoiceItem";
 import { Box } from "lucide-react";
-import { useState } from "react";
 
-const InvoiceItems = () => {
-  const [items, setItems] = useState<InvoiceItemType[]>([
-    {
-      id: crypto.randomUUID(),
-      product: "",
-      productDescription: "",
-      quantity: 1,
-      price: 0,
-      discount: 0,
-    },
-  ]);
+const InvoiceItems = ({items , setItems, totalPrice}) => {
+
 
   function handleAddNewItem() {
     const newItem: InvoiceItemType = {
@@ -26,7 +16,6 @@ const InvoiceItems = () => {
       price: 0,
       discount: 0,
     };
-    console.log("clicked on add");
     setItems((currentItems) => [...currentItems, newItem]);
   }
 
@@ -35,6 +24,8 @@ const InvoiceItems = () => {
       currentItems.filter((currentItem) => currentItem.id !== item.id),
     );
   }
+
+
 
   return (
     <div className="bg-white p-4 rounded-lg shadow ">
@@ -60,6 +51,7 @@ const InvoiceItems = () => {
           key={item.id}
           items={items}
           onDelete={handleDelete}
+          totalPrice={totalPrice}
         />
       ))}
       <div className="flex items-center justify-end mt-4">

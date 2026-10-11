@@ -10,13 +10,8 @@ interface InvoiceItemProps {
   onDelete: (id: string) => void;
 }
 
-const InvoiceItem = ({ items, item, setItems , onDelete }: InvoiceItemProps) => {
+const InvoiceItem = ({ items, item, setItems , onDelete, totalPrice }: InvoiceItemProps) => {
   console.log(items, "items");
-
-  const totalPrice =
-    item.quantity * item.price -
-    (item.discount > 0 ? item.quantity * item.price * (item.discount / 100) : 0);
-
 
 
   return (
@@ -117,7 +112,7 @@ const InvoiceItem = ({ items, item, setItems , onDelete }: InvoiceItemProps) => 
         />
       </div>
       <div className="flex items-center justify-center bg-surface-secondary w-full">
-        {totalPrice}
+        {totalPrice(item)}
       </div>
       <div
         className="flex items-center justify-center bg-surface-secondary w-full hover:text-red-500 cursor-pointer"
