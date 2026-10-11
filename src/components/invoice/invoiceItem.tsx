@@ -1,15 +1,33 @@
+import type { Dispatch, SetStateAction } from "react";
+import type { InvoiceItemType } from "@/types/index";
+
 import { Trash } from "lucide-react";
 
-const InvoiceItem = ({ item, setItems }) => {
-  console.log(item, 6666);
+interface InvoiceItemProps {
+  items: InvoiceItemType[];
+  item: InvoiceItemType;
+  setItems: Dispatch<SetStateAction<InvoiceItemType[]>>;
+  onDelete: (id: string) => void;
+}
+
+const InvoiceItem = ({ items, item, setItems , onDelete }: InvoiceItemProps) => {
+  console.log(items, "items");
+
+  const totalPrice =
+    item.quantity * item.price -
+    (item.discount > 0 ? item.quantity * item.price * (item.discount / 100) : 0);
+
+
 
   return (
-    <div className="grid grid-cols-[25px_1fr_1fr_100px_200px_100px_100px_100px] mb-4">
-      <div className="flex items-center justify-center bg-surface-secondary">1</div>
-      <div className="pt-2 mx-2">
+    <div className="grid grid-cols-[25px_1fr_1fr_100px_200px_100px_100px_100px]">
+      <div className="flex items-center justify-center bg-surface-secondary">
+        {items.findIndex((currentItem) => currentItem.id === item.id) + 1}
+      </div>
+      <div className="py-2 mx-2">
         <input
           type="text"
-          className="w-full rounded-md border border-gray-300 px-3 py-1 focus:outline-none focus:border-blue-300 "
+          className="w-full rounded-md border border-gray-300 px-3 py-1 focus:outline-none focus:border-blue-300"
           placeholder="نام محصول"
           value={item.product}
           onChange={(event) => {
@@ -25,7 +43,7 @@ const InvoiceItem = ({ item, setItems }) => {
           }}
         />
       </div>
-      <div className="pt-2 mx-2">
+      <div className="py-2 mx-2">
         <input
           className="border border-gray-300 px-3 py-1 rounded-md w-full focus:outline-none focus:border-blue-300"
           type="text"
@@ -43,7 +61,7 @@ const InvoiceItem = ({ item, setItems }) => {
           }}
         />
       </div>
-      <div className="pt-2 mx-2">
+      <div className="py-2 mx-2">
         <input
           className="border border-gray-300 px-3 py-1 rounded-md w-full focus:outline-none focus:border-blue-300"
           type="number"
@@ -62,7 +80,7 @@ const InvoiceItem = ({ item, setItems }) => {
           }}
         />
       </div>
-      <div className="pt-2 mx-2">
+      <div className="py-2 mx-2">
         <input
           className="border border-gray-300 px-3 py-1 rounded-md w-full focus:outline-none focus:border-blue-300"
           type="number"
@@ -81,7 +99,7 @@ const InvoiceItem = ({ item, setItems }) => {
           }}
         />
       </div>
-      <div className="pt-2 mx-2">
+      <div className="py-2 mx-2">
         <input
           className="border border-gray-300 px-3 py-1 rounded-md w-full focus:outline-none focus:border-blue-300"
           type="number"
@@ -98,8 +116,13 @@ const InvoiceItem = ({ item, setItems }) => {
           }}
         />
       </div>
-      <div className="flex items-center justify-center bg-surface-secondary w-full">0</div>
       <div className="flex items-center justify-center bg-surface-secondary w-full">
+        {totalPrice}
+      </div>
+      <div
+        className="flex items-center justify-center bg-surface-secondary w-full hover:text-red-500 cursor-pointer"
+        onClick={() => onDelete(item)}
+      >
         <Trash size={20} />
       </div>
     </div>

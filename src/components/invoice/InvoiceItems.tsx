@@ -1,21 +1,40 @@
 "use client";
 
+import { InvoiceItemType } from "@/types";
 import InvoiceItem from "./invoiceItem";
-import { Box, Trash } from "lucide-react";
+import { Box } from "lucide-react";
 import { useState } from "react";
-import { id } from "zod/locales";
 
 const InvoiceItems = () => {
-  const [items, setItems] = useState([
+  const [items, setItems] = useState<InvoiceItemType[]>([
     {
-      id: 1,
+      id: crypto.randomUUID(),
       product: "",
       productDescription: "",
       quantity: 1,
       price: 0,
-      discount: 100,
+      discount: 0,
     },
   ]);
+
+  function handleAddNewItem() {
+    const newItem: InvoiceItemType = {
+      id: crypto.randomUUID(),
+      product: "",
+      productDescription: "",
+      quantity: 1,
+      price: 0,
+      discount: 0,
+    };
+    console.log("clicked on add");
+    setItems((currentItems) => [...currentItems, newItem]);
+  }
+
+  function handleDelete(item: string, id: string) {
+    setItems((currentItems) =>
+      currentItems.filter((currentItem) => currentItem.id !== item.id),
+    );
+  }
 
   return (
     <div className="bg-white p-4 rounded-lg shadow ">
@@ -35,10 +54,19 @@ const InvoiceItems = () => {
       </div>
 
       {items.map((item) => (
-        <InvoiceItem item={item} setItems={setItems} key={item.id} />
+        <InvoiceItem
+          item={item}
+          setItems={setItems}
+          key={item.id}
+          items={items}
+          onDelete={handleDelete}
+        />
       ))}
-      <div className="flex items-center justify-end">
-        <button className="bg-primary-hover px-3 py-2 rounded-lg cursor-pointer">
+      <div className="flex items-center justify-end mt-4">
+        <button
+          className="bg-primary-hover px-3 py-2 rounded-lg cursor-pointer hover:drop-shadow-md transition-all duration-200 focus:outline-none"
+          onClick={handleAddNewItem}
+        >
           + افزودن آیتم جدید
         </button>
       </div>

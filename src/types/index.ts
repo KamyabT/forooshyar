@@ -43,3 +43,14 @@ export type PageHeaderProps = {
   title: string;
   description: string;
 };
+
+
+
+export interface InvoiceItemType {
+  id: string;
+  product: string;
+  productDescription: string;
+  quantity: number;
+  price: number;
+  discount: number;
+}
