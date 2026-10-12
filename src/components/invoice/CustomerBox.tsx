@@ -12,7 +12,7 @@ const CustomerBox = () => {
           <label>انتخاب مشتری</label>
           <input
             type="text"
-            className="w-1/2  border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:border-blue-300"
+            className="w-2/3  border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:border-blue-300"
             placeholder="انتخاب مشتری"
           />
         </div>
@@ -20,7 +20,7 @@ const CustomerBox = () => {
           <label>شماره تلفن</label>
           <input
             type="number"
-            className="w-1/2  border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:border-blue-300"
+            className="w-2/3  border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:border-blue-300"
             placeholder="تلفن تماس"
           />
         </div>
@@ -28,7 +28,7 @@ const CustomerBox = () => {
           <label>آدرس</label>
           <input
             type="text"
-            className="w-1/2  border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:border-blue-300"
+            className="w-2/3  border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:border-blue-300"
             placeholder="آدرس"
           />
         </div>

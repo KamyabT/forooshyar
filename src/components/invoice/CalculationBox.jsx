@@ -10,21 +10,21 @@ const Calculation = ({ totalPrice, items }) => {
         <h3>جمع کل</h3>
       </div>
       <div>
-        <div className="flex justify-between">
+        <div className="flex justify-between border-b-1 border-solid border-gray-100 p-2">
           <p>جمع مبلغ</p>
           <p>0 تومان</p>
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between border-b-1 border-solid border-gray-100 p-2">
           <p>مجموع تخفیف</p>
           <p>0 تومان</p>
         </div>
-        <div className="flex justify-between">
-          <p>مالیات</p>
+        <div className="flex justify-between border-b-1 border-solid border-gray-100 p-2">
+          <p>مالیات (%)</p>
           <p>0 تومان</p>
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between border-b-1 border-solid border-gray-100 p-2">
           <p>مبلغ نهایی</p>
-          <p>{InvoiceTotal}</p>
+          <p>{InvoiceTotal} تومان</p>
         </div>
       </div>
     </div>

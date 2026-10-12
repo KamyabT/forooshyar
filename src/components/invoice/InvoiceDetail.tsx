@@ -1,4 +1,6 @@
 import billNumberGenerator from "./utils/billNumberGenerator";
+import { format, newDate } from "date-fns-jalali";
+
 
 import { ReceiptText } from "lucide-react";
 

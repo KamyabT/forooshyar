@@ -1,10 +1,11 @@
+import { BriefcaseBusiness } from "lucide-react";
 
 const BusinessBox = () => {
-
   return (
     <div className=" bg-white p-4 rounded-lg shadow">
       <div>
-        <div>
+        <div className="flex items-center gap-2">
+          <BriefcaseBusiness />
           <h3>اطلاعات کسب و کار</h3>
         </div>
         <div className="flex items-center gap-4 mt-4">

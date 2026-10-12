@@ -1,6 +1,9 @@
 import { FileCheck, SaveCheck, Trash, Zap } from "lucide-react";
 
-const Operations = () => {
+const Operations = ({onClearItems}) => {
+
+
+
   return (
     <div className=" bg-white p-4 rounded-lg shadow">
       <div className="flex items-center mb-3 gap-2">
@@ -16,7 +19,7 @@ const Operations = () => {
           <SaveCheck size={20}/>
           <p className="">ذخیره پیش‌نویس</p>
         </button>
-        <button className="flex justify-center align-center rounded cursor-pointer bg-primary-hover rounded-md cursor-pointer hover:drop-shadow-md transition-all duration-200 px-5 py-2 gap-2">
+        <button className="flex justify-center align-center rounded cursor-pointer bg-primary-hover rounded-md cursor-pointer hover:drop-shadow-md transition-all duration-200 px-5 py-2 gap-2" onClick={onClearItems}>
           <Trash size={20}/>
           <p className="">پاک کردن فرم</p>
         </button>

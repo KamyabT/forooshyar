@@ -8,6 +8,7 @@ import OperationsBox from "@/components/invoice/OperationsBox";
 import CalculationBox from "@/components/invoice/CalculationBox";
 import PageHeader from "@/components/ui/pageHeader";
 import CommentsBox from "@/components/invoice/CommentsBox";
+import { InvoiceItemType } from "@/types";
 import { useState } from "react";
 
 const InvoiceGeneratorPage = () => {
@@ -22,11 +23,25 @@ const InvoiceGeneratorPage = () => {
     },
   ]);
 
-    function calculateTotalPrice(item: InvoiceItemType): number {
+  function calculateTotalPrice(item: InvoiceItemType): number {
     const subTotal = item.price * item.quantity;
     const discountAmount = subTotal * (item.discount / 100);
 
     return subTotal - discountAmount;
+  }
+
+  function handleClearItems() {
+    console.log("cleard");
+    setItems([
+      {
+        id: crypto.randomUUID(),
+        product: "",
+        productDescription: "",
+        quantity: 1,
+        price: 0,
+        discount: 0,
+      },
+    ]);
   }
 
   return (
@@ -41,11 +56,15 @@ const InvoiceGeneratorPage = () => {
         <BusinessBox />
       </section>
       <section>
-        <InvoiceItems items={items} setItems={setItems} totalPrice={calculateTotalPrice}/>
+        <InvoiceItems
+          items={items}
+          setItems={setItems}
+          totalPrice={calculateTotalPrice}
+        />
       </section>
       <section className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 my-5">
-        <OperationsBox />
-        <CalculationBox items={items} totalPrice={calculateTotalPrice}/>
+        <OperationsBox onClearItems={handleClearItems} />
+        <CalculationBox items={items} totalPrice={calculateTotalPrice} />
         <CommentsBox />
       </section>
     </>
