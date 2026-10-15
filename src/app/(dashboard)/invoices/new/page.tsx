@@ -48,7 +48,7 @@ const InvoiceGeneratorPage = () => {
   }
 
   async function handleGenerateInvoice() {
-    const blob = await pdf(<InvoiceDocument data={items}/>).toBlob();
+    const blob = await pdf(<InvoiceDocument data={items} />).toBlob();
     const url = URL.createObjectURL(blob);
 
     const a = document.createElement("a");
@@ -57,6 +57,10 @@ const InvoiceGeneratorPage = () => {
     a.click();
 
     URL.revokeObjectURL(url);
+
+    setTimeout(() => {
+      handleClearItems();
+    }, 1000);
   }
 
   return (

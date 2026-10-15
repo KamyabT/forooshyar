@@ -8,6 +8,16 @@ Font.register({
   ],
 });
 
+
+const col = {
+  total: "15%",
+  discount: "10%",
+  price: "15%",
+  quantity: "10%",
+  description: "25%",
+  product: "25%",
+};
+
 const styles = StyleSheet.create({
   page: {
     padding: 48,
@@ -42,6 +52,7 @@ const styles = StyleSheet.create({
     borderBottom: "1px solid red",
     paddingBottom: 5,
     paddingHorizontal: 5,
+    textAlign: "right"
   },
   items: {
     flexDirection: "row",
@@ -55,6 +66,8 @@ const styles = StyleSheet.create({
     borderRight: "1px solid blue",
     paddingVertical: 5,
     paddingHorizontal: 5,
+    textAlign: "right"
+
   },
 
   totals: {
@@ -80,6 +93,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     padding: 10,
   },
+
+
+  productDescription: {
+    flexWrap: "wrap",
+    textAlign: "right"
+  }
 });
 
 const InvoiceDocument = ({ data }) => {
@@ -99,22 +118,22 @@ const InvoiceDocument = ({ data }) => {
           </View>
         </View>
         <View style={styles.itemsHeader}>
-          <View>
+          <View style={{ width: col.total }}>
             <Text>جمع کل</Text>
           </View>
-          <View>
+          <View style={{ width: col.discount }}>
             <Text>تخفیف</Text>
           </View>
-          <View>
+          <View style={{ width: col.price }}>
             <Text>قیمت واحد</Text>
           </View>
-          <View>
+          <View style={{ width: col.quantity }}>
             <Text>تعداد</Text>
           </View>
-          <View>
+          <View style={{ width: col.description }}>
             <Text>توضیحات محصول</Text>
           </View>
-          <View>
+          <View style={{ width: col.product }}>
             <Text>نام محصول</Text>
           </View>
         </View>
@@ -122,22 +141,22 @@ const InvoiceDocument = ({ data }) => {
         {data.map((item) => {
           return (
             <View style={styles.items} key={item.id}>
-              <View style={styles.innerItem}>
+              <View style={[styles.innerItem , {width: col.total}]} >
                 <Text>45000</Text>
               </View>
-              <View style={styles.innerItem}>
+              <View style={[styles.innerItem , { width: col.discount }]}>
                 <Text>{item.discount}</Text>
               </View>
-              <View style={styles.innerItem}>
+              <View style={[styles.innerItem, { width: col.price }]}>
                 <Text>{item.price}</Text>
               </View>
-              <View style={styles.innerItem}>
+              <View style={[styles.innerItem , { width: col.quantity }]}>
                 <Text>{item.quantity}</Text>
               </View>
-              <View style={styles.innerItem}>
+              <View style={[styles.innerItem , styles.productDescription , { width: col.description }]}>
                 <Text>{item.productDescription}</Text>
               </View>
-              <View style={styles.innerItem}>
+              <View style={[styles.innerItem , { width: col.product }]}>
                 <Text>{item.product}</Text>
               </View>
             </View>
