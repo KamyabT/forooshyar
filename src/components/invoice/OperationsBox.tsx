@@ -1,6 +1,7 @@
 import { FileCheck, SaveCheck, Trash, Zap } from "lucide-react";
 
-const Operations = ({onClearItems}) => {
+const Operations = ({onClearItems , onGenerateInvoice}) => {
+
 
 
 
@@ -11,7 +12,7 @@ const Operations = ({onClearItems}) => {
         <h3>عملیات</h3>
       </div>
       <div className="flex flex-col gap-3">
-        <button className="flex justify-center align-center rounded cursor-pointer bg-primary-secondary text-white rounded-md cursor-pointer hover:drop-shadow-md transition-all duration-200 px-5 py-2 gap-2">
+        <button className="flex justify-center align-center rounded cursor-pointer bg-primary-secondary text-white rounded-md cursor-pointer hover:drop-shadow-md transition-all duration-200 px-5 py-2 gap-2" onClick={onGenerateInvoice}>
           <FileCheck size={20}/>
           <p className="">صدور و دانلود</p>
         </button>

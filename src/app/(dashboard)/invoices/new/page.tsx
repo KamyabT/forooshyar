@@ -8,8 +8,11 @@ import OperationsBox from "@/components/invoice/OperationsBox";
 import CalculationBox from "@/components/invoice/CalculationBox";
 import PageHeader from "@/components/ui/pageHeader";
 import CommentsBox from "@/components/invoice/CommentsBox";
+import InvoicePdf from "@/components/invoice/InvoicePdf";
 import { InvoiceItemType } from "@/types";
 import { useState } from "react";
+import { pdf } from "@react-pdf/renderer";
+import InvoiceDocument from "@/components/invoice/InvoiceDocument";
 
 const InvoiceGeneratorPage = () => {
   const [items, setItems] = useState<InvoiceItemType[]>([
@@ -44,12 +47,25 @@ const InvoiceGeneratorPage = () => {
     ]);
   }
 
+  async function handleGenerateInvoice() {
+    const blob = await pdf(<InvoiceDocument data={items}/>).toBlob();
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "invoice.pdf";
+    a.click();
+
+    URL.revokeObjectURL(url);
+  }
+
   return (
     <>
       <PageHeader
         title="فاکتور جدید"
         description="اطلاعات فاکتور را تکمیل کنید و فاکتور خود را صادر نمایید"
       />
+
       <section className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 my-5">
         <InvoiceDetail />
         <CustomerBox />
@@ -63,10 +79,14 @@ const InvoiceGeneratorPage = () => {
         />
       </section>
       <section className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 my-5">
-        <OperationsBox onClearItems={handleClearItems} />
+        <OperationsBox
+          onClearItems={handleClearItems}
+          onGenerateInvoice={handleGenerateInvoice}
+        />
         <CalculationBox items={items} totalPrice={calculateTotalPrice} />
         <CommentsBox />
       </section>
+      {/* <InvoicePdf data={items} /> */}
     </>
   );
 };
