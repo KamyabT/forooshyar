@@ -1,6 +1,9 @@
 import { User } from "lucide-react";
+import { useState } from "react";
 
-const CustomerBox = () => {
+const CustomerBox = ({ customerInfo, setCustomerInfo }) => {
+  console.log(customerInfo, 5555);
+
   return (
     <div className="bg-white p-4 rounded-lg shadow">
       <div className="flex items-center mb-3 gap-2">
@@ -14,6 +17,13 @@ const CustomerBox = () => {
             type="text"
             className="w-2/3  border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:border-blue-300"
             placeholder="انتخاب مشتری"
+            value={customerInfo?.name}
+            onChange={(e) =>
+              setCustomerInfo(() => {
+                const fullName = e.target.value;
+                setCustomerInfo({ ...customerInfo, name: fullName });
+              })
+            }
           />
         </div>
         <div className="flex justify-between">
@@ -22,6 +32,13 @@ const CustomerBox = () => {
             type="number"
             className="w-2/3  border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:border-blue-300"
             placeholder="تلفن تماس"
+            value={customerInfo?.phone}
+            onChange={(e) =>
+              setCustomerInfo(() => {
+                const phone = e.target.value;
+                setCustomerInfo({ ...customerInfo, phone });
+              })
+            }
           />
         </div>
         <div className="flex justify-between">
@@ -30,6 +47,13 @@ const CustomerBox = () => {
             type="text"
             className="w-2/3  border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:border-blue-300"
             placeholder="آدرس"
+            value={customerInfo?.address}
+            onChange={(e) =>
+              setCustomerInfo(() => {
+                const address = e.target.value;
+                setCustomerInfo({ ...customerInfo, address });
+              })
+            }
           />
         </div>
       </form>

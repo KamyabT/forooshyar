@@ -1,11 +1,9 @@
-import billNumberGenerator from "./utils/billNumberGenerator";
 import { format, newDate } from "date-fns-jalali";
 
-
 import { ReceiptText } from "lucide-react";
+import { useState } from "react";
 
-const InvoiceDetail = () => {
-  billNumberGenerator();
+const InvoiceDetail = ({ invoiceIdentity, setInvoiceIdentity }) => {
   return (
     <div className="bg-white p-4 rounded-lg shadow">
       <div className="flex items-center mb-3 gap-2">
@@ -21,7 +19,7 @@ const InvoiceDetail = () => {
             type="text"
             id="invoiceNumber"
             className="w-1/2  border border-gray-300 text-left px-3 py-1 rounded-md"
-            value={billNumberGenerator()}
+            value={invoiceIdentity.billNumber}
             disabled={true}
           />
         </div>
@@ -31,6 +29,13 @@ const InvoiceDetail = () => {
             type="date"
             id="invoiceDate"
             className="w-1/2  border border-gray-300 text-left px-3 py-1 rounded-md"
+            value={invoiceIdentity.invoiceCreationDate}
+            onChange={(e) =>
+              setInvoiceIdentity((current) => ({
+                ...current,
+                invoiceCreationDate: e.target.value,
+              }))
+            }
           />
         </div>
         <div className="flex justify-between w-full">
@@ -39,6 +44,13 @@ const InvoiceDetail = () => {
             type="date"
             id="dueDate"
             className="w-1/2  border border-gray-300 text-left px-3 py-1 rounded-md"
+            value={invoiceIdentity.invoicePaymentDate}
+            onChange={(e) =>
+              setInvoiceIdentity((current) => ({
+                ...current,
+                invoicePaymentDate: e.target.value,
+              }))
+            }
           />
         </div>
       </form>

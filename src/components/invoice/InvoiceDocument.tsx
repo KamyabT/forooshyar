@@ -8,7 +8,6 @@ Font.register({
   ],
 });
 
-
 const col = {
   total: "15%",
   discount: "10%",
@@ -52,7 +51,7 @@ const styles = StyleSheet.create({
     borderBottom: "1px solid red",
     paddingBottom: 5,
     paddingHorizontal: 5,
-    textAlign: "right"
+    textAlign: "right",
   },
   items: {
     flexDirection: "row",
@@ -66,8 +65,7 @@ const styles = StyleSheet.create({
     borderRight: "1px solid blue",
     paddingVertical: 5,
     paddingHorizontal: 5,
-    textAlign: "right"
-
+    textAlign: "right",
   },
 
   totals: {
@@ -94,27 +92,43 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 
-
   productDescription: {
     flexWrap: "wrap",
-    textAlign: "right"
-  }
+    textAlign: "right",
+  },
+
+  businessInfo: {
+    textAlign: "right",
+    direction: "rtl",
+  },
+  textSg: {
+    textAlign: "right",
+  },
 });
 
 const InvoiceDocument = ({ data }) => {
-  console.log(data);
+  console.log(data, 666666);
   return (
     <Document>
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
           <View>
             <Text>Logo</Text>
-          </View>
-          <View>
             <Text>فروشگاه کامیاب</Text>
             <Text>تهران، ایران</Text>
             <Text>09123456789</Text>
             <Text>info@example.com</Text>
+          </View>
+          <View style={styles.businessInfo}>
+            <Text style={styles.textSg}>نام و نام خانوادگی : {data.name}</Text>
+            <Text style={styles.textSg}>تلفن تماس : {data.phone}</Text>
+            <Text style={styles.textSg}>آدرس : {data.address}</Text>
+            <Text style={styles.textSg}>
+              تاریخ صدور فاکتور : {data.invoiceCreationDate}
+            </Text>
+            <Text style={styles.textSg}>
+              تاریخ پرداخت فاکتور : {data.invoicePaymentDate}
+            </Text>
           </View>
         </View>
         <View style={styles.itemsHeader}>
@@ -138,25 +152,31 @@ const InvoiceDocument = ({ data }) => {
           </View>
         </View>
 
-        {data.map((item) => {
+        {data.items.map((item) => {
           return (
             <View style={styles.items} key={item.id}>
-              <View style={[styles.innerItem , {width: col.total}]} >
+              <View style={[styles.innerItem, { width: col.total }]}>
                 <Text>45000</Text>
               </View>
-              <View style={[styles.innerItem , { width: col.discount }]}>
+              <View style={[styles.innerItem, { width: col.discount }]}>
                 <Text>{item.discount}</Text>
               </View>
               <View style={[styles.innerItem, { width: col.price }]}>
                 <Text>{item.price}</Text>
               </View>
-              <View style={[styles.innerItem , { width: col.quantity }]}>
+              <View style={[styles.innerItem, { width: col.quantity }]}>
                 <Text>{item.quantity}</Text>
               </View>
-              <View style={[styles.innerItem , styles.productDescription , { width: col.description }]}>
+              <View
+                style={[
+                  styles.innerItem,
+                  styles.productDescription,
+                  { width: col.description },
+                ]}
+              >
                 <Text>{item.productDescription}</Text>
               </View>
-              <View style={[styles.innerItem , { width: col.product }]}>
+              <View style={[styles.innerItem, { width: col.product }]}>
                 <Text>{item.product}</Text>
               </View>
             </View>

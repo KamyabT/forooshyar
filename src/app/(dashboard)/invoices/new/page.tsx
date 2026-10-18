@@ -13,6 +13,8 @@ import { InvoiceItemType } from "@/types";
 import { useState } from "react";
 import { pdf } from "@react-pdf/renderer";
 import InvoiceDocument from "@/components/invoice/InvoiceDocument";
+import billNumberGenerator from "../../../../components/invoice/utils/billNumberGenerator";
+
 
 const InvoiceGeneratorPage = () => {
   const [items, setItems] = useState<InvoiceItemType[]>([
@@ -26,6 +28,18 @@ const InvoiceGeneratorPage = () => {
     },
   ]);
 
+  const [customerInfo, setCustomerInfo] = useState({
+    name: "",
+    phone: "",
+    address: "",
+  });
+
+    const [invoiceIdentity, setInvoiceIdentity] = useState({
+    billNumber: billNumberGenerator(),
+    invoiceCreationDate: "",
+    invoicePaymentDate: "",
+  });
+
   function calculateTotalPrice(item: InvoiceItemType): number {
     const subTotal = item.price * item.quantity;
     const discountAmount = subTotal * (item.discount / 100);
@@ -34,7 +48,6 @@ const InvoiceGeneratorPage = () => {
   }
 
   function handleClearItems() {
-    console.log("cleard");
     setItems([
       {
         id: crypto.randomUUID(),
@@ -48,7 +61,13 @@ const InvoiceGeneratorPage = () => {
   }
 
   async function handleGenerateInvoice() {
-    const blob = await pdf(<InvoiceDocument data={items} />).toBlob();
+    const finalData = {
+      items: [...items],
+      ...customerInfo,
+      ...invoiceIdentity
+    };
+    console.log(finalData, 56666);
+    const blob = await pdf(<InvoiceDocument data={finalData} />).toBlob();
     const url = URL.createObjectURL(blob);
 
     const a = document.createElement("a");
@@ -63,6 +82,10 @@ const InvoiceGeneratorPage = () => {
     }, 1000);
   }
 
+  function handleCustomerInfo() {
+    console.log("info handled");
+  }
+
   return (
     <>
       <PageHeader
@@ -71,8 +94,8 @@ const InvoiceGeneratorPage = () => {
       />
 
       <section className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 my-5">
-        <InvoiceDetail />
-        <CustomerBox />
+        <InvoiceDetail invoiceIdentity={invoiceIdentity} setInvoiceIdentity={setInvoiceIdentity}/>
+        <CustomerBox customerInfo={customerInfo} setCustomerInfo={setCustomerInfo} />
         <BusinessBox />
       </section>
       <section>
