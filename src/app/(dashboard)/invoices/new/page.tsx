@@ -8,7 +8,6 @@ import OperationsBox from "@/components/invoice/OperationsBox";
 import CalculationBox from "@/components/invoice/CalculationBox";
 import PageHeader from "@/components/ui/pageHeader";
 import CommentsBox from "@/components/invoice/CommentsBox";
-import InvoicePdf from "@/components/invoice/InvoicePdf";
 import { InvoiceItemType } from "@/types";
 import { useState } from "react";
 import { pdf } from "@react-pdf/renderer";
