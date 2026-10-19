@@ -42,8 +42,16 @@ const InvoiceGeneratorPage = () => {
   function calculateTotalPrice(item: InvoiceItemType): number {
     const subTotal = item.price * item.quantity;
     const discountAmount = subTotal * (item.discount / 100);
-
     return subTotal - discountAmount;
+  }
+
+  function calculateSubTotal(item:InvoiceItemType): number {
+    const subTotal = item.price * item.quantity;
+    return subTotal
+  }
+
+  function calculateTotalDiscount(item:InvoiceItemType): number{
+    return (item.price * item.quantity)*(item.discount/100)
   }
 
   function handleClearItems() {
@@ -81,9 +89,6 @@ const InvoiceGeneratorPage = () => {
     }, 1000);
   }
 
-  function handleCustomerInfo() {
-    console.log("info handled");
-  }
 
   return (
     <>
@@ -109,7 +114,7 @@ const InvoiceGeneratorPage = () => {
           onClearItems={handleClearItems}
           onGenerateInvoice={handleGenerateInvoice}
         />
-        <CalculationBox items={items} totalPrice={calculateTotalPrice} />
+        <CalculationBox items={items} totalPrice={calculateTotalPrice} subTotal={calculateSubTotal} totalDiscount={calculateTotalDiscount}/>
         <CommentsBox />
       </section>
       {/* <InvoicePdf data={items} /> */}

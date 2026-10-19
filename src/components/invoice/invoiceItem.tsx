@@ -112,7 +112,7 @@ const InvoiceItem = ({ items, item, setItems , onDelete, totalPrice }: InvoiceIt
         />
       </div>
       <div className="flex items-center justify-center bg-surface-secondary w-full">
-        {totalPrice(item)}
+        {item.discount > 100 ? 0 :  totalPrice(item)}
       </div>
       <div
         className="flex items-center justify-center bg-surface-secondary w-full hover:text-red-500 cursor-pointer"
