@@ -1,13 +1,16 @@
 import type { LucideIcon } from "lucide-react";
 
-export interface Customer {
-  id: string;
+export interface CustomerType {
+  id?: string;
   name: string;
   email?: string;
-  phone?: string;
-  address?: string;
+  phone: string;
+  address: string;
 }
 
+
+
+/************Refactored until top************/
 export interface InvoiceItem {
   id: string;
   product: string;
@@ -15,6 +18,8 @@ export interface InvoiceItem {
   price: number;
   total: number;
 }
+
+export type InvoiceStatus = "draft" | "sent" | "paid" | "cancelled";
 
 export interface Invoice {
   id: string;
@@ -25,7 +30,7 @@ export interface Invoice {
   discount: number;
   tax: number;
   total: number;
-  status: "draft" | "sent" | "paid" | "cancelled";
+  status: InvoiceStatus;
   date: string;
 }
 
@@ -54,3 +59,6 @@ export interface InvoiceItemType {
   price: number;
   discount: number;
 }
+
+
+

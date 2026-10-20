@@ -8,6 +8,7 @@ interface InvoiceItemProps {
   item: InvoiceItemType;
   setItems: Dispatch<SetStateAction<InvoiceItemType[]>>;
   onDelete: (id: string) => void;
+  totalPrice: (item: InvoiceItemType) => number; 
 }
 
 const InvoiceItem = ({ items, item, setItems , onDelete, totalPrice }: InvoiceItemProps) => {
@@ -116,7 +117,7 @@ const InvoiceItem = ({ items, item, setItems , onDelete, totalPrice }: InvoiceIt
       </div>
       <div
         className="flex items-center justify-center bg-surface-secondary w-full hover:text-red-500 cursor-pointer"
-        onClick={() => onDelete(item)}
+        onClick={() => onDelete(item.id)}
       >
         <Trash size={20} />
       </div>

@@ -1,5 +1,6 @@
 import { Document, Page, View, Text, Font, StyleSheet } from "@react-pdf/renderer";
 import { CalendarDays } from "lucide-react";
+import type { InvoiceItemType } from "@/types/index";
 
 Font.register({
   family: "iranSans",
@@ -235,7 +236,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const InvoiceDocument = ({ data }) => {
+interface InvoiceDocumentProps {
+  data: {
+    billNumber: string;
+    invoiceCreationDate: string;
+    invoicePaymentDate: string;
+    address: string;
+    name: string;
+    phone: string;
+    items: InvoiceItemType[];
+  };
+}
+
+const InvoiceDocument = ({ data }: InvoiceDocumentProps) => {
   console.log(data, 666666);
   return (
     <Document>

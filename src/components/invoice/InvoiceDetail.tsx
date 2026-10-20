@@ -2,8 +2,24 @@ import { format, newDate } from "date-fns-jalali";
 
 import { ReceiptText } from "lucide-react";
 import { useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
 
-const InvoiceDetail = ({ invoiceIdentity, setInvoiceIdentity }) => {
+interface InvoiceDetailProps {
+  invoiceIdentity: {
+    billNumber: string;
+    invoiceCreationDate: string;
+    invoicePaymentDate: string;
+  };
+  setInvoiceIdentity: Dispatch<
+    SetStateAction<{
+      billNumber: string;
+      invoiceCreationDate: string;
+      invoicePaymentDate: string;
+    }>
+  >;
+}
+
+const InvoiceDetail = ({ invoiceIdentity, setInvoiceIdentity }: InvoiceDetailProps) => {
   return (
     <div className="bg-white p-4 rounded-lg shadow">
       <div className="flex items-center mb-3 gap-2">

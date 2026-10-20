@@ -1,8 +1,6 @@
 import { Calculator } from "lucide-react";
 
 const Calculation = ({ totalPrice, subTotal, totalDiscount, items }) => {
-  console.log(items, 7777);
-
   const invoiceFinalTotal = items.reduce((sum, item) => sum + totalPrice(item), 0);
   const invoiceTotal = items.reduce((sum, item) => sum + subTotal(item), 0);
   const invoiceDiscount = items.reduce((sum, item) => sum + totalDiscount(item), 0);

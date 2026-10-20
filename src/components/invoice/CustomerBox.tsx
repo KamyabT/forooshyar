@@ -1,7 +1,13 @@
 import { User } from "lucide-react";
-import { useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
+import type { CustomerType } from "@/types/index";
 
-const CustomerBox = ({ customerInfo, setCustomerInfo }) => {
+interface CustomerBoxProps {
+  customerInfo: CustomerType;
+  setCustomerInfo: Dispatch<SetStateAction<CustomerType>>;
+}
+
+const CustomerBox = ({ customerInfo, setCustomerInfo }: CustomerBoxProps) => {
   console.log(customerInfo, 5555);
 
   return (
@@ -18,27 +24,17 @@ const CustomerBox = ({ customerInfo, setCustomerInfo }) => {
             className="w-2/3  border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:border-blue-300"
             placeholder="انتخاب مشتری"
             value={customerInfo?.name}
-            onChange={(e) =>
-              setCustomerInfo(() => {
-                const fullName = e.target.value;
-                setCustomerInfo({ ...customerInfo, name: fullName });
-              })
-            }
+            onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
           />
         </div>
         <div className="flex justify-between">
           <label>شماره تلفن</label>
           <input
-            type="number"
+            type="tel"
             className="w-2/3  border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:border-blue-300"
             placeholder="تلفن تماس"
             value={customerInfo?.phone}
-            onChange={(e) =>
-              setCustomerInfo(() => {
-                const phone = e.target.value;
-                setCustomerInfo({ ...customerInfo, phone });
-              })
-            }
+            onChange={(e) => setCustomerInfo({ ...customerInfo, phone: e.target.value })}
           />
         </div>
         <div className="flex justify-between">
@@ -49,10 +45,7 @@ const CustomerBox = ({ customerInfo, setCustomerInfo }) => {
             placeholder="آدرس"
             value={customerInfo?.address}
             onChange={(e) =>
-              setCustomerInfo(() => {
-                const address = e.target.value;
-                setCustomerInfo({ ...customerInfo, address });
-              })
+              setCustomerInfo({ ...customerInfo, address: e.target.value })
             }
           />
         </div>

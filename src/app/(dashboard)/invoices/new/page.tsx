@@ -8,12 +8,11 @@ import OperationsBox from "@/components/invoice/OperationsBox";
 import CalculationBox from "@/components/invoice/CalculationBox";
 import PageHeader from "@/components/ui/pageHeader";
 import CommentsBox from "@/components/invoice/CommentsBox";
-import { InvoiceItemType } from "@/types";
+import { InvoiceItemType, CustomerType } from "@/types";
 import { useState } from "react";
 import { pdf } from "@react-pdf/renderer";
 import InvoiceDocument from "@/components/invoice/InvoiceDocument";
 import billNumberGenerator from "../../../../components/invoice/utils/billNumberGenerator";
-
 
 const InvoiceGeneratorPage = () => {
   const [items, setItems] = useState<InvoiceItemType[]>([
@@ -27,13 +26,13 @@ const InvoiceGeneratorPage = () => {
     },
   ]);
 
-  const [customerInfo, setCustomerInfo] = useState({
+  const [customerInfo, setCustomerInfo] = useState<CustomerType>({
     name: "",
     phone: "",
     address: "",
   });
 
-    const [invoiceIdentity, setInvoiceIdentity] = useState({
+  const [invoiceIdentity, setInvoiceIdentity] = useState({
     billNumber: billNumberGenerator(),
     invoiceCreationDate: "",
     invoicePaymentDate: "",
@@ -45,13 +44,13 @@ const InvoiceGeneratorPage = () => {
     return subTotal - discountAmount;
   }
 
-  function calculateSubTotal(item:InvoiceItemType): number {
+  function calculateSubTotal(item: InvoiceItemType): number {
     const subTotal = item.price * item.quantity;
-    return subTotal
+    return subTotal;
   }
 
-  function calculateTotalDiscount(item:InvoiceItemType): number{
-    return (item.price * item.quantity)*(item.discount/100)
+  function calculateTotalDiscount(item: InvoiceItemType): number {
+    return item.price * item.quantity * (item.discount / 100);
   }
 
   function handleClearItems() {
@@ -71,9 +70,8 @@ const InvoiceGeneratorPage = () => {
     const finalData = {
       items: [...items],
       ...customerInfo,
-      ...invoiceIdentity
+      ...invoiceIdentity,
     };
-    console.log(finalData, 56666);
     const blob = await pdf(<InvoiceDocument data={finalData} />).toBlob();
     const url = URL.createObjectURL(blob);
 
@@ -89,7 +87,6 @@ const InvoiceGeneratorPage = () => {
     }, 1000);
   }
 
-
   return (
     <>
       <PageHeader
@@ -98,7 +95,10 @@ const InvoiceGeneratorPage = () => {
       />
 
       <section className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 my-5">
-        <InvoiceDetail invoiceIdentity={invoiceIdentity} setInvoiceIdentity={setInvoiceIdentity}/>
+        <InvoiceDetail
+          invoiceIdentity={invoiceIdentity}
+          setInvoiceIdentity={setInvoiceIdentity}
+        />
         <CustomerBox customerInfo={customerInfo} setCustomerInfo={setCustomerInfo} />
         <BusinessBox />
       </section>
@@ -114,7 +114,12 @@ const InvoiceGeneratorPage = () => {
           onClearItems={handleClearItems}
           onGenerateInvoice={handleGenerateInvoice}
         />
-        <CalculationBox items={items} totalPrice={calculateTotalPrice} subTotal={calculateSubTotal} totalDiscount={calculateTotalDiscount}/>
+        <CalculationBox
+          items={items}
+          totalPrice={calculateTotalPrice}
+          subTotal={calculateSubTotal}
+          totalDiscount={calculateTotalDiscount}
+        />
         <CommentsBox />
       </section>
       {/* <InvoicePdf data={items} /> */}

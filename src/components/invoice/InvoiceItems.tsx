@@ -1,12 +1,17 @@
 "use client";
 
 import { InvoiceItemType } from "@/types";
+import type { Dispatch, SetStateAction } from "react";
 import InvoiceItem from "./invoiceItem";
 import { Box } from "lucide-react";
 
-const InvoiceItems = ({items , setItems, totalPrice}) => {
+interface InvoiceItemsProps {
+  items: InvoiceItemType[];
+  setItems: Dispatch<SetStateAction<InvoiceItemType[]>>;
+  totalPrice: (item: InvoiceItemType) => number;
+}
 
-
+const InvoiceItems = ({ items, setItems, totalPrice }: InvoiceItemsProps) => {
   function handleAddNewItem() {
     const newItem: InvoiceItemType = {
       id: crypto.randomUUID(),
@@ -19,13 +24,11 @@ const InvoiceItems = ({items , setItems, totalPrice}) => {
     setItems((currentItems) => [...currentItems, newItem]);
   }
 
-  function handleDelete(item: string, id: string) {
+  function handleDelete(id: string) {
     setItems((currentItems) =>
-      currentItems.filter((currentItem) => currentItem.id !== item.id),
+      currentItems.filter((currentItem) => currentItem.id !== id),
     );
   }
-
-
 
   return (
     <div className="bg-white p-4 rounded-lg shadow ">
