@@ -3,18 +3,35 @@ import type { InvoiceItemType } from "@/types/index";
 
 import { Trash } from "lucide-react";
 
+/*********Types Start**********/
+type itemsProps = {
+  discount: number;
+  id: string;
+  price: number;
+  product: string;
+  productDescription: string;
+  quantity: number;
+};
+
+type totalCalculationFn = (item: itemsProps) => number;
+
 interface InvoiceItemProps {
-  items: InvoiceItemType[];
-  item: InvoiceItemType;
+  items: itemsProps[];
+  item: itemsProps;
   setItems: Dispatch<SetStateAction<InvoiceItemType[]>>;
   onDelete: (id: string) => void;
-  totalPrice: (item: InvoiceItemType) => number; 
+  totalPrice: totalCalculationFn;
 }
 
-const InvoiceItem = ({ items, item, setItems , onDelete, totalPrice }: InvoiceItemProps) => {
-  console.log(items, "items");
+/*********Types End**********/
 
-
+const InvoiceItem = ({
+  items,
+  item,
+  setItems,
+  onDelete,
+  totalPrice,
+}: InvoiceItemProps) => {
   return (
     <div className="grid grid-cols-[25px_1fr_1fr_100px_200px_100px_100px_100px]">
       <div className="flex items-center justify-center bg-surface-secondary">
@@ -113,7 +130,7 @@ const InvoiceItem = ({ items, item, setItems , onDelete, totalPrice }: InvoiceIt
         />
       </div>
       <div className="flex items-center justify-center bg-surface-secondary w-full">
-        {item.discount > 100 ? 0 :  totalPrice(item)}
+        {item.discount >= 100 ? 0 : totalPrice(item)}
       </div>
       <div
         className="flex items-center justify-center bg-surface-secondary w-full hover:text-red-500 cursor-pointer"

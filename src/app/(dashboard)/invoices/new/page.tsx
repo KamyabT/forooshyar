@@ -15,16 +15,7 @@ import InvoiceDocument from "@/components/invoice/InvoiceDocument";
 import billNumberGenerator from "../../../../components/invoice/utils/billNumberGenerator";
 
 const InvoiceGeneratorPage = () => {
-  const [items, setItems] = useState<InvoiceItemType[]>([
-    {
-      id: crypto.randomUUID(),
-      product: "",
-      productDescription: "",
-      quantity: 1,
-      price: 0,
-      discount: 0,
-    },
-  ]);
+  const [items, setItems] = useState<InvoiceItemType[]>([]);
 
   const [customerInfo, setCustomerInfo] = useState<CustomerType>({
     name: "",
@@ -66,7 +57,96 @@ const InvoiceGeneratorPage = () => {
     ]);
   }
 
+  function customerValidation() {
+    if (
+      customerInfo.name.trim() === "" ||
+      customerInfo.phone.trim() == "" ||
+      customerInfo.address.trim() == ""
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function invoiceValidation() {
+    if (
+      invoiceIdentity.billNumber.trim() === "" ||
+      invoiceIdentity.invoiceCreationDate.trim() === "" ||
+      invoiceIdentity.invoicePaymentDate.trim() === ""
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  function itemLengthValidation() {
+    if (items.length === 0) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
   async function handleGenerateInvoice() {
+    /***********Not Empty Check**********/
+    const customerValidationChek = customerValidation();
+    const invoiceValidationCheck = invoiceValidation();
+    const itemLengthValidationCheck = itemLengthValidation();
+    // if (
+    //   customerInfo.name.trim() === "" ||
+    //   customerInfo.phone.trim() == "" ||
+    //   customerInfo.address.trim() == ""
+    // )
+    //   return alert("لطفا اطلاعات مشتری را تکمیل کنید");
+
+    // if (
+    //   invoiceIdentity.billNumber.trim() === "" ||
+    //   invoiceIdentity.invoiceCreationDate.trim() === "" ||
+    //   invoiceIdentity.invoicePaymentDate.trim() === ""
+    // )
+    //   return alert("لطفا اطلاعات فاکتور را تکمیل کنید");
+
+    // if (items.length === 0) return alert("لطفا حداقل یک محصول اضافه کنید");
+
+    // /***********Phone Check**********/
+
+    // const isMobile = /^09\d{9}$/.test(customerInfo.phone.trim());
+    // const isLandline = /^0\d{10}$/.test(customerInfo.phone.trim());
+    // if (!isMobile && !isLandline)
+    //   return alert(
+    //     "لطفا شماره تلفن را به درستی وارد کنید. (مثال: 09123456789 یا 02111223344)",
+    //   );
+
+    // /***********Invoice Items Check**********/
+    // if (
+    //   items.some(
+    //     (item) =>
+    //       item.quantity <= 0 ||
+    //       item.price < 0 ||
+    //       item.discount < 0 ||
+    //       item.discount > 100,
+    //   )
+    // )
+    //   return alert(
+    //     "لطفا مقادیر محصولات را به درستی وارد کنید. (تعداد باید بزرگتر از صفر باشد و قیمت و تخفیف نباید منفی باشد)",
+    //   );
+
+    // if (items.some((item) => item.product === ""))
+    //   return alert("لطفا نام محصول را تکمیل کنید");
+
+    // if (items.some((item) => item.price === 0))
+    //   return alert("لطفا قیمت پایه محصول را تکمیل کنید");
+
+    // if (items.some((item) => item.quantity === 0))
+    //   return alert("لطفا تعداد محصول را تکمیل کنید");
+
+    // if (invoiceIdentity.invoicePaymentDate < invoiceIdentity.invoiceCreationDate)
+    //   return alert("تاریخ تسویه فاکتور نمیتواند پیش از تاریخ صدور آن باشد");
+
+    /*********************/
+
     const finalData = {
       items: [...items],
       ...customerInfo,
@@ -81,10 +161,6 @@ const InvoiceGeneratorPage = () => {
     a.click();
 
     URL.revokeObjectURL(url);
-
-    setTimeout(() => {
-      handleClearItems();
-    }, 1000);
   }
 
   return (

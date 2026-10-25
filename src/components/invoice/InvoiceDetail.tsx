@@ -4,20 +4,20 @@ import { ReceiptText } from "lucide-react";
 import { useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 
+/*********Types Start**********/
+
+type invoiceIdentityProps = {
+  billNumber: string;
+  invoiceCreationDate: string;
+  invoicePaymentDate: string;
+};
+
 interface InvoiceDetailProps {
-  invoiceIdentity: {
-    billNumber: string;
-    invoiceCreationDate: string;
-    invoicePaymentDate: string;
-  };
-  setInvoiceIdentity: Dispatch<
-    SetStateAction<{
-      billNumber: string;
-      invoiceCreationDate: string;
-      invoicePaymentDate: string;
-    }>
-  >;
+  invoiceIdentity: invoiceIdentityProps;
+  setInvoiceIdentity: Dispatch<SetStateAction<invoiceIdentityProps>>;
 }
+
+/*********Types End**********/
 
 const InvoiceDetail = ({ invoiceIdentity, setInvoiceIdentity }: InvoiceDetailProps) => {
   return (

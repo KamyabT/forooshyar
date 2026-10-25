@@ -1,14 +1,27 @@
 import { User } from "lucide-react";
 import type { Dispatch, SetStateAction } from "react";
-import type { CustomerType } from "@/types/index";
 
-interface CustomerBoxProps {
-  customerInfo: CustomerType;
-  setCustomerInfo: Dispatch<SetStateAction<CustomerType>>;
+
+/*********Types Start**********/
+
+
+type CustomerInfoProps = {
+    id?: string;
+  name: string;
+  email?: string;
+  phone: string;
+  address: string;
 }
 
+interface CustomerBoxProps {
+  customerInfo: CustomerInfoProps;
+  setCustomerInfo: Dispatch<SetStateAction<CustomerInfoProps>>;
+}
+
+/*********Types End**********/
+
+
 const CustomerBox = ({ customerInfo, setCustomerInfo }: CustomerBoxProps) => {
-  console.log(customerInfo, 5555);
 
   return (
     <div className="bg-white p-4 rounded-lg shadow">

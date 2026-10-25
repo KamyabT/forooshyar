@@ -5,13 +5,30 @@ import type { Dispatch, SetStateAction } from "react";
 import InvoiceItem from "./invoiceItem";
 import { Box } from "lucide-react";
 
+
+
+
+type itemsProps = {
+  discount: number;
+  id: string;
+  price: number;
+  product: string;
+  productDescription: string;
+  quantity: number;
+};
+
+type totalCalculationFn = (item:itemsProps) => number
+
+
 interface InvoiceItemsProps {
-  items: InvoiceItemType[];
+  items: itemsProps[];
   setItems: Dispatch<SetStateAction<InvoiceItemType[]>>;
-  totalPrice: (item: InvoiceItemType) => number;
+  // totalPrice: (item: InvoiceItemType) => number;
+  totalPrice: totalCalculationFn
 }
 
 const InvoiceItems = ({ items, setItems, totalPrice }: InvoiceItemsProps) => {
+  console.log(items, "items in invoiceItems");
   function handleAddNewItem() {
     const newItem: InvoiceItemType = {
       id: crypto.randomUUID(),
@@ -47,7 +64,23 @@ const InvoiceItems = ({ items, setItems, totalPrice }: InvoiceItemsProps) => {
         <div className="flex items-center justify-center">عملیات</div>
       </div>
 
-      {items.map((item) => (
+      {items.length === 0 ? (
+        <div className="text-center py-4 text-muted-foreground">
+          هیچ آیتمی اضافه نشده است.
+        </div>
+      ) : items.map((item) => (
+        <InvoiceItem
+          item={item}
+          setItems={setItems}
+          key={item.id}
+          items={items}
+          onDelete={handleDelete}
+          totalPrice={totalPrice}
+
+        />
+      ))}
+
+      {/* {items.map((item) => (
         <InvoiceItem
           item={item}
           setItems={setItems}
@@ -56,7 +89,7 @@ const InvoiceItems = ({ items, setItems, totalPrice }: InvoiceItemsProps) => {
           onDelete={handleDelete}
           totalPrice={totalPrice}
         />
-      ))}
+      ))} */}
       <div className="flex items-center justify-end mt-4">
         <button
           className="bg-primary-hover px-3 py-2 rounded-lg cursor-pointer hover:drop-shadow-md transition-all duration-200 focus:outline-none"
