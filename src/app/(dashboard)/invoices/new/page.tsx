@@ -75,14 +75,39 @@ const InvoiceGeneratorPage = () => {
       invoiceIdentity.invoiceCreationDate.trim() === "" ||
       invoiceIdentity.invoicePaymentDate.trim() === ""
     ) {
+      return "لطفا اطلاعات فاکتور را تکمیل کنید" ;
+    }
+    if (invoiceIdentity.invoiceCreationDate > invoiceIdentity.invoicePaymentDate) {
+      return ("تاریخ پرداخت فاکتور نمی‌تواند قبل از تاریخ صدور فاکتور باشد");
+    }
+    return null;
+  }
+
+  function itemLengthValidation() {
+    if (items.length === 0) {
       return false;
     } else {
       return true;
     }
   }
 
-  function itemLengthValidation() {
-    if (items.length === 0) {
+  function phoneValidation() {
+    const isMobile = /^09\d{9}$/.test(customerInfo.phone.trim());
+    const isLandline = /^0\d{10}$/.test(customerInfo.phone.trim());
+    return isMobile || isLandline;
+  }
+
+  function invoiceItemsValidation() {
+    if (items.some((item) => item.discount < 0 || item.discount > 100)) {
+      return false;
+    }
+    if (items.some((item) => item.product.trim() === "")) {
+      return false;
+    }
+    if (items.some((item) => item.price <= 0)) {
+      return false;
+    }
+    if (items.some((item) => item.quantity <= 0)) {
       return false;
     } else {
       return true;
@@ -94,57 +119,30 @@ const InvoiceGeneratorPage = () => {
     const customerValidationChek = customerValidation();
     const invoiceValidationCheck = invoiceValidation();
     const itemLengthValidationCheck = itemLengthValidation();
-    // if (
-    //   customerInfo.name.trim() === "" ||
-    //   customerInfo.phone.trim() == "" ||
-    //   customerInfo.address.trim() == ""
-    // )
-    //   return alert("لطفا اطلاعات مشتری را تکمیل کنید");
+    const invoiceItemsValidationCheck = invoiceItemsValidation();
 
-    // if (
-    //   invoiceIdentity.billNumber.trim() === "" ||
-    //   invoiceIdentity.invoiceCreationDate.trim() === "" ||
-    //   invoiceIdentity.invoicePaymentDate.trim() === ""
-    // )
-    //   return alert("لطفا اطلاعات فاکتور را تکمیل کنید");
-
-    // if (items.length === 0) return alert("لطفا حداقل یک محصول اضافه کنید");
+    if (customerValidationChek === false)
+      return alert("لطفا اطلاعات مشتری را تکمیل کنید");
+    if (invoiceValidationCheck !== null)
+      return alert(invoiceValidationCheck);
+    if (itemLengthValidationCheck === false)
+      return alert("لطفا حداقل یک محصول اضافه کنید");
 
     // /***********Phone Check**********/
-
-    // const isMobile = /^09\d{9}$/.test(customerInfo.phone.trim());
-    // const isLandline = /^0\d{10}$/.test(customerInfo.phone.trim());
-    // if (!isMobile && !isLandline)
-    //   return alert(
-    //     "لطفا شماره تلفن را به درستی وارد کنید. (مثال: 09123456789 یا 02111223344)",
-    //   );
+    const phoneValidationCheck = phoneValidation();
+    console.log("phoneValidationCheck", phoneValidationCheck);
+    if (!phoneValidationCheck)
+      return alert(
+        "لطفا شماره تلفن را به درستی وارد کنید. (مثال: 09123456789 یا 02111223344)",
+      );
 
     // /***********Invoice Items Check**********/
-    // if (
-    //   items.some(
-    //     (item) =>
-    //       item.quantity <= 0 ||
-    //       item.price < 0 ||
-    //       item.discount < 0 ||
-    //       item.discount > 100,
-    //   )
-    // )
-    //   return alert(
-    //     "لطفا مقادیر محصولات را به درستی وارد کنید. (تعداد باید بزرگتر از صفر باشد و قیمت و تخفیف نباید منفی باشد)",
-    //   );
 
-    // if (items.some((item) => item.product === ""))
-    //   return alert("لطفا نام محصول را تکمیل کنید");
-
-    // if (items.some((item) => item.price === 0))
-    //   return alert("لطفا قیمت پایه محصول را تکمیل کنید");
-
-    // if (items.some((item) => item.quantity === 0))
-    //   return alert("لطفا تعداد محصول را تکمیل کنید");
-
-    // if (invoiceIdentity.invoicePaymentDate < invoiceIdentity.invoiceCreationDate)
-    //   return alert("تاریخ تسویه فاکتور نمیتواند پیش از تاریخ صدور آن باشد");
-
+    if (invoiceItemsValidationCheck === false) {
+      return alert(
+        "لطفا اطلاعات محصولات را به درستی وارد کنید. (تعداد و قیمت نمیتواند صفر یا منفی باشد و تخفیف نمیتواند منفی یا بیشتر از 100 درصد باشد)",
+      );
+    }
     /*********************/
 
     const finalData = {
