@@ -29,20 +29,7 @@ const InvoiceGeneratorPage = () => {
     invoicePaymentDate: "",
   });
 
-  function calculateTotalPrice(item: InvoiceItemType): number {
-    const subTotal = item.price * item.quantity;
-    const discountAmount = subTotal * (item.discount / 100);
-    return subTotal - discountAmount;
-  }
 
-  function calculateSubTotal(item: InvoiceItemType): number {
-    const subTotal = item.price * item.quantity;
-    return subTotal;
-  }
-
-  function calculateTotalDiscount(item: InvoiceItemType): number {
-    return item.price * item.quantity * (item.discount / 100);
-  }
 
   function handleClearItems() {
     setItems([
@@ -57,79 +44,76 @@ const InvoiceGeneratorPage = () => {
     ]);
   }
 
-  function customerValidation() {
+  function customerValidation(): string | null {
     if (
       customerInfo.name.trim() === "" ||
       customerInfo.phone.trim() == "" ||
       customerInfo.address.trim() == ""
     ) {
-      return false;
+      return "لطفا اطلاعات مشتری را تکمیل کنید";
     } else {
-      return true;
+      return null;
     }
   }
 
-  function invoiceValidation() {
+  function invoiceValidation(): string | null {
     if (
       invoiceIdentity.billNumber.trim() === "" ||
       invoiceIdentity.invoiceCreationDate.trim() === "" ||
       invoiceIdentity.invoicePaymentDate.trim() === ""
     ) {
-      return "لطفا اطلاعات فاکتور را تکمیل کنید" ;
+      return "لطفا اطلاعات فاکتور را تکمیل کنید";
     }
     if (invoiceIdentity.invoiceCreationDate > invoiceIdentity.invoicePaymentDate) {
-      return ("تاریخ پرداخت فاکتور نمی‌تواند قبل از تاریخ صدور فاکتور باشد");
+      return "تاریخ پرداخت فاکتور نمی‌تواند قبل از تاریخ صدور فاکتور باشد";
     }
     return null;
   }
 
-  function itemLengthValidation() {
+  function itemLengthValidation(): string | null {
     if (items.length === 0) {
-      return false;
+      return "لطفا حداقل یک محصول اضافه کنید";
     } else {
-      return true;
+      return null;
     }
   }
 
-  function phoneValidation() {
+  function phoneValidation(): boolean {
     const isMobile = /^09\d{9}$/.test(customerInfo.phone.trim());
     const isLandline = /^0\d{10}$/.test(customerInfo.phone.trim());
     return isMobile || isLandline;
   }
 
-  function invoiceItemsValidation() {
+  function invoiceItemsValidation(): string | null {
     if (items.some((item) => item.discount < 0 || item.discount > 100)) {
-      return false;
+      return "تخفیف نمیتواند منفی یا بیشتر از 100 درصد باشد";
     }
     if (items.some((item) => item.product.trim() === "")) {
-      return false;
+      return "لطفا نام محصول را وارد کنید";
     }
     if (items.some((item) => item.price <= 0)) {
-      return false;
+      return "قیمت محصول نمی‌تواند صفر یا منفی باشد";
     }
     if (items.some((item) => item.quantity <= 0)) {
-      return false;
+      return "تعداد محصول نمی‌تواند صفر یا منفی باشد";
     } else {
-      return true;
+      return null;
     }
   }
 
   async function handleGenerateInvoice() {
     /***********Not Empty Check**********/
-    const customerValidationChek = customerValidation();
-    const invoiceValidationCheck = invoiceValidation();
-    const itemLengthValidationCheck = itemLengthValidation();
-    const invoiceItemsValidationCheck = invoiceItemsValidation();
+    const itemLengthValidationCheck: string | null = itemLengthValidation();
+    const customerValidationCheck: string | null = customerValidation();
+    const invoiceValidationCheck: string | null = invoiceValidation();
+    const invoiceItemsValidationCheck: string | null = invoiceItemsValidation();
 
-    if (customerValidationChek === false)
-      return alert("لطفا اطلاعات مشتری را تکمیل کنید");
-    if (invoiceValidationCheck !== null)
-      return alert(invoiceValidationCheck);
-    if (itemLengthValidationCheck === false)
-      return alert("لطفا حداقل یک محصول اضافه کنید");
+    if (customerValidationCheck !== null) return alert(customerValidationCheck);
+    if (invoiceValidationCheck !== null) return alert(invoiceValidationCheck);
+    if (itemLengthValidationCheck !== null) return alert(itemLengthValidationCheck);
 
     // /***********Phone Check**********/
-    const phoneValidationCheck = phoneValidation();
+    const phoneValidationCheck: boolean = phoneValidation();
     console.log("phoneValidationCheck", phoneValidationCheck);
     if (!phoneValidationCheck)
       return alert(
@@ -138,10 +122,8 @@ const InvoiceGeneratorPage = () => {
 
     // /***********Invoice Items Check**********/
 
-    if (invoiceItemsValidationCheck === false) {
-      return alert(
-        "لطفا اطلاعات محصولات را به درستی وارد کنید. (تعداد و قیمت نمیتواند صفر یا منفی باشد و تخفیف نمیتواند منفی یا بیشتر از 100 درصد باشد)",
-      );
+    if (invoiceItemsValidationCheck !== null) {
+      return alert(invoiceItemsValidationCheck);
     }
     /*********************/
 
@@ -180,7 +162,6 @@ const InvoiceGeneratorPage = () => {
         <InvoiceItems
           items={items}
           setItems={setItems}
-          totalPrice={calculateTotalPrice}
         />
       </section>
       <section className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 my-5">
@@ -188,12 +169,7 @@ const InvoiceGeneratorPage = () => {
           onClearItems={handleClearItems}
           onGenerateInvoice={handleGenerateInvoice}
         />
-        <CalculationBox
-          items={items}
-          totalPrice={calculateTotalPrice}
-          subTotal={calculateSubTotal}
-          totalDiscount={calculateTotalDiscount}
-        />
+        <CalculationBox items={items} />
         <CommentsBox />
       </section>
       {/* <InvoicePdf data={items} /> */}

@@ -1,10 +1,20 @@
 import { Calculator } from "lucide-react";
+import {
+  calculateTotalPrice,
+  calculateSubTotal,
+  calculateTotalDiscount,
+} from "@/components/invoice/utils/pricesCalculations";
 
-const Calculation = ({ totalPrice, subTotal, totalDiscount, items }) => {
-
-  const invoiceFinalTotal = items.reduce((sum, item) => sum + totalPrice(item), 0);
-  const invoiceTotal = items.reduce((sum, item) => sum + subTotal(item), 0);
-  const invoiceDiscount = items.reduce((sum, item) => sum + totalDiscount(item), 0);
+const Calculation = ({ items }) => {
+  const invoiceFinalTotal = items.reduce(
+    (sum, item) => sum + calculateTotalPrice(item),
+    0,
+  );
+  const invoiceTotal = items.reduce((sum, item) => sum + calculateSubTotal(item), 0);
+  const invoiceDiscount = items.reduce(
+    (sum, item) => sum + calculateTotalDiscount(item),
+    0,
+  );
 
   return (
     <div className=" bg-white p-4 rounded-lg shadow">

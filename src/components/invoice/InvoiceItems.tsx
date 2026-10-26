@@ -17,17 +17,15 @@ type itemsProps = {
   quantity: number;
 };
 
-type totalCalculationFn = (item:itemsProps) => number
 
 
 interface InvoiceItemsProps {
   items: itemsProps[];
   setItems: Dispatch<SetStateAction<InvoiceItemType[]>>;
   // totalPrice: (item: InvoiceItemType) => number;
-  totalPrice: totalCalculationFn
 }
 
-const InvoiceItems = ({ items, setItems, totalPrice }: InvoiceItemsProps) => {
+const InvoiceItems = ({ items, setItems }: InvoiceItemsProps) => {
   console.log(items, "items in invoiceItems");
   function handleAddNewItem() {
     const newItem: InvoiceItemType = {
@@ -75,21 +73,9 @@ const InvoiceItems = ({ items, setItems, totalPrice }: InvoiceItemsProps) => {
           key={item.id}
           items={items}
           onDelete={handleDelete}
-          totalPrice={totalPrice}
 
         />
       ))}
-
-      {/* {items.map((item) => (
-        <InvoiceItem
-          item={item}
-          setItems={setItems}
-          key={item.id}
-          items={items}
-          onDelete={handleDelete}
-          totalPrice={totalPrice}
-        />
-      ))} */}
       <div className="flex items-center justify-end mt-4">
         <button
           className="bg-primary-hover px-3 py-2 rounded-lg cursor-pointer hover:drop-shadow-md transition-all duration-200 focus:outline-none"

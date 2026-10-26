@@ -1,5 +1,6 @@
 import type { Dispatch, SetStateAction } from "react";
 import type { InvoiceItemType } from "@/types/index";
+import { calculateTotalPrice } from "@/components/invoice/utils/pricesCalculations";
 
 import { Trash } from "lucide-react";
 
@@ -12,26 +13,16 @@ type itemsProps = {
   productDescription: string;
   quantity: number;
 };
-
-type totalCalculationFn = (item: itemsProps) => number;
-
 interface InvoiceItemProps {
   items: itemsProps[];
   item: itemsProps;
   setItems: Dispatch<SetStateAction<InvoiceItemType[]>>;
   onDelete: (id: string) => void;
-  totalPrice: totalCalculationFn;
 }
 
 /*********Types End**********/
 
-const InvoiceItem = ({
-  items,
-  item,
-  setItems,
-  onDelete,
-  totalPrice,
-}: InvoiceItemProps) => {
+const InvoiceItem = ({ items, item, setItems, onDelete }: InvoiceItemProps) => {
   return (
     <div className="grid grid-cols-[25px_1fr_1fr_100px_200px_100px_100px_100px]">
       <div className="flex items-center justify-center bg-surface-secondary">
@@ -119,7 +110,8 @@ const InvoiceItem = ({
           placeholder="تخفیف"
           value={item.discount}
           onChange={(e) => {
-            const discount = +e.target.value;
+            const discount =
+              +e.target.value > 100 ? 100 : +e.target.value < 0 ? 0 : +e.target.value;
 
             setItems((currentItems) =>
               currentItems.map((currentItem) =>
@@ -130,7 +122,7 @@ const InvoiceItem = ({
         />
       </div>
       <div className="flex items-center justify-center bg-surface-secondary w-full">
-        {item.discount >= 100 ? 0 : totalPrice(item)}
+        {item.discount >= 100 ? 0 : calculateTotalPrice(item)}
       </div>
       <div
         className="flex items-center justify-center bg-surface-secondary w-full hover:text-red-500 cursor-pointer"
