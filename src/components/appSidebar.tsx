@@ -22,7 +22,7 @@ const AppSidebar = () => {
       className={`${style.aside} flex h-screen flex-col bg-surface-secondary px-4 pb-6 pt-2 text-sm font-medium border-l-1 border-gray-300 drop-shadow-sm`}
     >
       <div className="mb-2 flex items-center justify-start">
-        <Image src={Logo} alt="Logo" width={175} height={175} />
+        <Image src={Logo} quality={100} alt="Logo" width={175} height={175} />
       </div>
 
       <div className="flex flex-1 flex-col justify-between">

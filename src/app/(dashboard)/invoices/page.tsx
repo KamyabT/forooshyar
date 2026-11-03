@@ -1,14 +1,9 @@
-import { metadata } from "@/app/layout";
+import type { Metadata } from "next";
 
-metadata.title = "Invoices";
-
-
-const InvoicesPage = () => {
-  return (
-    <div>
-      <h1>Invoices Page</h1>
-    </div>
-  );
+export const metadata: Metadata = {
+  title: "Invoices",
 };
 
-export default InvoicesPage;
+export default function InvoicesPage() {
+  return <div>Invoices Page</div>;
+}
