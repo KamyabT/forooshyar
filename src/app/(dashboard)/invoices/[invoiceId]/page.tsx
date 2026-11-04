@@ -63,15 +63,16 @@ const invoices = [
 export default async function page({ params }) {
   const { invoiceId } = await params;
 
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+
   console.log(invoiceId);
 
-  
   const invoice = invoices.find((invoice) => {
     return invoice.id === Number(invoiceId);
   });
 
-  if (!invoice){
-    notFound()
+  if (!invoice) {
+    notFound();
   }
 
   console.log(invoice);

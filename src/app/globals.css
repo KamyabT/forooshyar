@@ -3,6 +3,7 @@
 :root {
   --background: #fefefe;
   --foreground: #0f172a;
+  --background-secondary: #e9ecf0;
 
   --surface: #ffffff;
   --surface-secondary: #f1f5f9;
@@ -35,6 +36,8 @@
 
 @theme {
   --color-background: var(--background);
+  --color-background-secondary: var(--background-secondary);
+
   --color-foreground: var(--foreground);
 
   --color-surface: var(--surface);
@@ -124,8 +127,6 @@ select {
   font-family: inherit;
 }
 
-
-
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -134,6 +135,6 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
