@@ -78,24 +78,27 @@ export default async function page({ params }) {
   console.log(invoice);
   return (
     <div>
-      <p>{invoice.id}</p>
-      <p>{invoice.address}</p>
-      <p>{invoice.name}</p>
-      <p>{invoice.billNumber}</p>
-      <p>{invoice.invoiceCreationDate}</p>
-      <p>{invoice.invoicePaymentDate}</p>
-      <p>{invoice.phone}</p>
-      {invoice?.items.map((item) => {
-        return (
-          <div key={invoice.id}>
-            <p>{item.id}</p>
-            <p>{item.price}</p>
-            <p>{item.product}</p>
-            <p>{item.quantity}</p>
-            <p>{item.quantity}</p>
-          </div>
-        );
-      })}
+      <p>فاکتور شماره 2</p>
+      <div>
+        <p>{invoice.id}</p>
+        <p>{invoice.address}</p>
+        <p>{invoice.name}</p>
+        <p>{invoice.billNumber}</p>
+        <p>{invoice.invoiceCreationDate}</p>
+        <p>{invoice.invoicePaymentDate}</p>
+        <p>{invoice.phone}</p>
+        {invoice?.items.map((item) => {
+          return (
+            <div key={invoice.id}>
+              <p>{item.id}</p>
+              <p>{item.price}</p>
+              <p>{item.product}</p>
+              <p>{item.quantity}</p>
+              <p>{item.quantity}</p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

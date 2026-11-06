@@ -1,5 +1,4 @@
-const Customers = () => {
-  return <div>Coming soon</div>;
-};
 
-export default Customers;
+export default function page() {
+  return <div>Coming Soon</div>;
+}

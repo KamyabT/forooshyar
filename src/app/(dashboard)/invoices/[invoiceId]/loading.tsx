@@ -1,3 +1,3 @@
 export default function Loading() {
-  return <div>loading invoice data</div>;
+  return <div className="flex items-center justify-center text-[20px]">loading invoice data</div>;
 }

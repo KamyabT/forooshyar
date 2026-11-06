@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 export default function InvoicesPage() {
   return (
     <>
-      <section>bills management</section>
       <InvoicesList />
     </>
   );

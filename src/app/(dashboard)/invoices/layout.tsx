@@ -5,7 +5,7 @@ export default function layout({
 }>) {
   return (
     <main>
-      <div>{children}</div>
+      {children}
     </main>
   );
 }
