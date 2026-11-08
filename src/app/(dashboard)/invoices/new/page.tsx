@@ -14,9 +14,6 @@ import { pdf } from "@react-pdf/renderer";
 import InvoiceDocument from "@/components/invoice/InvoiceDocument";
 import billNumberGenerator from "../../../../components/invoice/utils/billNumberGenerator";
 
-
-
-
 const InvoiceGeneratorPage = () => {
   const [items, setItems] = useState<InvoiceItemType[]>([]);
 
@@ -32,8 +29,6 @@ const InvoiceGeneratorPage = () => {
     invoicePaymentDate: "",
   });
 
-
-
   function handleClearItems() {
     setItems([
       {
@@ -45,6 +40,16 @@ const InvoiceGeneratorPage = () => {
         discount: 0,
       },
     ]);
+    setInvoiceIdentity({
+      billNumber: billNumberGenerator(),
+      invoiceCreationDate: "",
+      invoicePaymentDate: "",
+    });
+    setCustomerInfo({
+      name: "",
+      phone: "",
+      address: "",
+    });
   }
 
   function customerValidation(): string | null {
@@ -162,10 +167,7 @@ const InvoiceGeneratorPage = () => {
         <BusinessBox />
       </section>
       <section>
-        <InvoiceItems
-          items={items}
-          setItems={setItems}
-        />
+        <InvoiceItems items={items} setItems={setItems} />
       </section>
       <section className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 my-5">
         <OperationsBox

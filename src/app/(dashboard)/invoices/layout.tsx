@@ -1,4 +1,3 @@
-import Link from "next/link";
 
 export default function InvoicesLayout({
   children,
@@ -6,11 +5,7 @@ export default function InvoicesLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main>
-      <div>
-        <Link href="/invoices">All Bills</Link>
-        <Link href="/invoices/new">New Bills</Link>
-      </div>
+    <main className="">
       {children}
     </main>
   );
