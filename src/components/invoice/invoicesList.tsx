@@ -4,57 +4,123 @@ import Link from "next/link";
 const data = [
   {
     id: 1,
-    billNumber: "INV-1403-001",
-    invoiceCreationDate: "1403/06/21",
-    invoicePaymentDate: "1403/06/23",
-    fullName: "علی محمدی",
-    price: 4850000,
-    paymentStatus: "paid",
+    address: "aaaaa",
+    billNumber: "FYB-2026113-1451",
+    invoiceCreationDate: "2026-11-11",
+    invoicePaymentDate: "2026-11-12",
+    name: "ssss",
+    phone: "09123456789",
+    status: "paid",
+    items: [
+      {
+        discount: 0,
+        id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
+        price: 1000,
+        product: "asdsa",
+        productDescription: "asdsad",
+        quantity: 1,
+      },
+    ],
   },
   {
     id: 2,
-    billNumber: "INV-1403-001",
-    invoiceCreationDate: "1403/06/21",
-    invoicePaymentDate: "1403/06/23",
-    fullName: "علی محمدی",
-    price: 4850000,
-    paymentStatus: "paid",
+    address: "sssss",
+    billNumber: "FYB-2026093-1451",
+    invoiceCreationDate: "2026-11-11",
+    invoicePaymentDate: "2026-11-12",
+    name: "ssss",
+    phone: "09123456789",
+    status: "pending",
+    items: [
+      {
+        discount: 0,
+        id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
+        price: 1000,
+        product: "asdsa",
+        productDescription: "asdsad",
+        quantity: 1,
+      },
+    ],
   },
   {
     id: 3,
-    billNumber: "INV-1403-001",
-    invoiceCreationDate: "1403/06/21",
-    invoicePaymentDate: "1403/06/23",
-    fullName: "علی محمدی",
-    price: 4850000,
-    paymentStatus: "paid",
+    address: "ddddd",
+    billNumber: "FYB-2026083-1451",
+    invoiceCreationDate: "2026-11-11",
+    invoicePaymentDate: "2026-11-12",
+    name: "ssss",
+    phone: "09123456789",
+    status: "rejected",
+    items: [
+      {
+        discount: 0,
+        id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
+        price: 1000,
+        product: "asdsa",
+        productDescription: "asdsad",
+        quantity: 1,
+      },
+    ],
   },
   {
     id: 4,
-    billNumber: "INV-1403-001",
-    invoiceCreationDate: "1403/06/21",
-    invoicePaymentDate: "1403/06/23",
-    fullName: "علی محمدی",
-    price: 4850000,
-    paymentStatus: "paid",
+    address: "ddddd",
+    billNumber: "FYB-2026114-1451",
+    invoiceCreationDate: "2026-11-11",
+    invoicePaymentDate: "2026-11-12",
+    name: "ssss",
+    phone: "09123456789",
+    status: "paid",
+    items: [
+      {
+        discount: 0,
+        id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
+        price: 1000,
+        product: "asdsa",
+        productDescription: "asdsad",
+        quantity: 1,
+      },
+    ],
   },
   {
     id: 5,
-    billNumber: "INV-1403-001",
-    invoiceCreationDate: "1403/06/21",
-    invoicePaymentDate: "1403/06/23",
-    fullName: "علی محمدی",
-    price: 4850000,
-    paymentStatus: "paid",
+    address: "ddddd",
+    billNumber: "FYB-20261020-1451",
+    invoiceCreationDate: "2026-11-11",
+    invoicePaymentDate: "2026-11-12",
+    name: "ssss",
+    phone: "09123456789",
+    status: "paid",
+    items: [
+      {
+        discount: 0,
+        id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
+        price: 1000,
+        product: "asdsa",
+        productDescription: "asdsad",
+        quantity: 1,
+      },
+    ],
   },
   {
     id: 6,
-    billNumber: "INV-1403-001",
-    invoiceCreationDate: "1403/06/21",
-    invoicePaymentDate: "1403/06/23",
-    fullName: "علی محمدی",
-    price: 4850000,
-    paymentStatus: "paid",
+    address: "ddddd",
+    billNumber: "FYB-2026123-1451",
+    invoiceCreationDate: "2026-11-11",
+    invoicePaymentDate: "2026-11-12",
+    name: "ssss",
+    phone: "09123456789",
+    status: "pending",
+    items: [
+      {
+        discount: 0,
+        id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
+        price: 1000,
+        product: "asdsa",
+        productDescription: "asdsad",
+        quantity: 1,
+      },
+    ],
   },
 ];
 
@@ -63,18 +129,12 @@ export default function InvoicesList() {
     <div>
       <div className="flex justify-between mb-3">
         <div>
-          <p>فاکتورها</p>
-          <p>مشاهده، جستجو و مدیریت فاکتورهای صادر شده</p>
+          <p className="font-bold text-[24px]">فاکتورها</p>
+          <p className="text-[16px]">مشاهده، جستجو و مدیریت فاکتورهای صادر شده</p>
         </div>
         <div className="flex items-center gap-x-3">
           <Link
-            className="bg-primary-secondary text-white px-3 py-2 rounded hover:bg-primary transition-all"
-            href="/invoices"
-          >
-            همه فاکتورها
-          </Link>
-          <Link
-            className="bg-primary-secondary text-white px-3 py-2 rounded hover:bg-primary transition-all"
+            className="bg-primary-secondary text-white px-5 py-2 rounded hover:bg-primary transition-all "
             href="/invoices/new"
           >
             فاکتور جدید

@@ -24,20 +24,20 @@ const Calculation = ({ items }) => {
       </div>
       <div>
         <div className="flex justify-between border-b-1 border-solid border-gray-100 p-2">
-          <p>جمع مبلغ</p>
+          <p className="font-medium">جمع مبلغ</p>
           <p>{invoiceTotal} تومان</p>
         </div>
         <div className="flex justify-between border-b-1 border-solid border-gray-100 p-2">
-          <p>مجموع تخفیف</p>
+          <p className="font-medium">مجموع تخفیف</p>
           <p>{invoiceDiscount > invoiceTotal ? invoiceTotal : invoiceDiscount} تومان</p>
         </div>
         <div className="flex justify-between border-b-1 border-solid border-gray-100 p-2">
-          <p>مالیات (%)</p>
+          <p className="font-medium">مالیات (%)</p>
           <p>0 تومان</p>
         </div>
-        <div className="flex justify-between border-b-1 border-solid border-gray-100 p-2">
-          <p>مبلغ نهایی</p>
-          <p>{invoiceDiscount > invoiceTotal ? 0 : invoiceFinalTotal} تومان</p>
+        <div className="flex justify-between bg-primary-hover border-b-1 border-solid border-gray-100 p-2">
+          <p className="text-primary font-extrabold text-[18px]">مبلغ نهایی</p>
+          <p className="text-primary font-extrabold text-[18px]">{invoiceDiscount > invoiceTotal ? 0 : invoiceFinalTotal} تومان</p>
         </div>
       </div>
     </div>
