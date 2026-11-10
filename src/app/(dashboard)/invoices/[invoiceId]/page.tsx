@@ -3,6 +3,8 @@ import Link from "next/link";
 import InvoiceCard from "../../../../components/invoice/singleInvoice/InvoiceCard";
 import InvoiceCustomer from "../../../../components/invoice/singleInvoice/InvoiceCustomer";
 import InvoiceDetails from "../../../../components/invoice/singleInvoice/InvoiceDetails";
+import InvoiceItemsList from "../../../../components/invoice/singleInvoice/InvoiceItemsList";
+import { File } from "lucide-react";
 
 const invoices = [
   {
@@ -22,6 +24,14 @@ const invoices = [
         product: "asdsa",
         productDescription: "asdsad",
         quantity: 1,
+      },
+      {
+        discount: 0,
+        id: "8f0e0bd7-bd07-4463-basdb1c-3eaa3a7dsf1be66",
+        price: 1000,
+        product: "second",
+        productDescription: "asdsad",
+        quantity: 15,
       },
     ],
   },
@@ -146,50 +156,34 @@ export default async function page({ params }) {
   return (
     <div className="flex flex-col gap-y-4">
       <div className="flex justify-between items-center">
-        <div>invoice data</div>
+        <div className="flex items-center gap-x-2 justify-center">
+          <div className="flex text-[18px] gap-x-2 font-bold">
+            <File size={24} />
+            فاکتور شماره {invoice.billNumber}
+          </div>
+          <div className="bg-green-200 py-2 px-3 rounded-md">پرداخت شده</div>
+        </div>
         <div>
-          <Link href="/invoices">back to list</Link>
+          <Link
+            className="bg-primary-secondary text-white px-5 py-2 rounded hover:bg-primary transition-all"
+            href="/invoices"
+          >
+            لیست سفارشات
+          </Link>
         </div>
       </div>
       <div className="grid grid-cols-[repeat(4,minmax(0,1fr))] gap-4">
-        <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard />
-        <InvoiceCard />
+        <InvoiceCard title="جمع کل" />
+        <InvoiceCard title="تخفیف" />
+        <InvoiceCard title="مالیات (%)" />
+        <InvoiceCard title="مبلغ پرداخت شده" />
       </div>
       <div className="grid grid-cols-[repeat(2,minmax(0,1fr))] gap-4">
         <InvoiceDetails invoice={invoice} />
         <InvoiceCustomer invoice={invoice} />
       </div>
-      <div className="grid grid-cols-[repeat(6,minmax(0,1fr))]">
-        <div className="bg-green-100">ردیف</div>
-        <div className="bg-blue-100">محصول/خدمت</div>
-        <div className="bg-green-100">تعداد</div>
-        <div className="bg-blue-100">قیمت واحد (تومان)</div>
-        <div className="bg-green-100">تخفیف (%)</div>
-        <div className="bg-blue-100">مبلغ کل (تومان)</div>
-      </div>
-
-      <p>فاکتور شماره 2</p>
-      <div>
-        <p>{invoice.id}</p>
-        <p>{invoice.address}</p>
-        <p>{invoice.name}</p>
-        <p>{invoice.billNumber}</p>
-        <p>{invoice.invoiceCreationDate}</p>
-        <p>{invoice.invoicePaymentDate}</p>
-        <p>{invoice.phone}</p>
-        {invoice?.items.map((item) => {
-          return (
-            <div key={invoice.id}>
-              <p>{item.id}</p>
-              <p>{item.price}</p>
-              <p>{item.product}</p>
-              <p>{item.quantity}</p>
-              <p>{item.quantity}</p>
-            </div>
-          );
-        })}
+      <div className="bg-background p-4 rounded-lg shadow-md ">
+        <InvoiceItemsList invoice={invoice} />
       </div>
     </div>
   );
