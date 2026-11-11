@@ -4,7 +4,7 @@ import InvoiceCard from "../../../../components/invoice/singleInvoice/InvoiceCar
 import InvoiceCustomer from "../../../../components/invoice/singleInvoice/InvoiceCustomer";
 import InvoiceDetails from "../../../../components/invoice/singleInvoice/InvoiceDetails";
 import InvoiceItemsList from "../../../../components/invoice/singleInvoice/InvoiceItemsList";
-import { File } from "lucide-react";
+import { File , ShoppingCart, Tag , Calculator, Wallet} from "lucide-react";
 
 const invoices = [
   {
@@ -13,7 +13,7 @@ const invoices = [
     billNumber: "FYB-2026113-1451",
     invoiceCreationDate: "2026-11-11",
     invoicePaymentDate: "2026-11-12",
-    name: "ssss",
+    name: "ali",
     phone: "09123456789",
     status: "paid",
     items: [
@@ -41,7 +41,7 @@ const invoices = [
     billNumber: "FYB-2026093-1451",
     invoiceCreationDate: "2026-11-11",
     invoicePaymentDate: "2026-11-12",
-    name: "ssss",
+    name: "reza",
     phone: "09123456789",
     status: "pending",
     items: [
@@ -61,7 +61,7 @@ const invoices = [
     billNumber: "FYB-2026083-1451",
     invoiceCreationDate: "2026-11-11",
     invoicePaymentDate: "2026-11-12",
-    name: "ssss",
+    name: "mamad",
     phone: "09123456789",
     status: "rejected",
     items: [
@@ -81,7 +81,7 @@ const invoices = [
     billNumber: "FYB-2026114-1451",
     invoiceCreationDate: "2026-11-11",
     invoicePaymentDate: "2026-11-12",
-    name: "ssss",
+    name: "hasan",
     phone: "09123456789",
     status: "paid",
     items: [
@@ -173,10 +173,10 @@ export default async function page({ params }) {
         </div>
       </div>
       <div className="grid grid-cols-[repeat(4,minmax(0,1fr))] gap-4">
-        <InvoiceCard title="جمع کل" />
-        <InvoiceCard title="تخفیف" />
-        <InvoiceCard title="مالیات (%)" />
-        <InvoiceCard title="مبلغ پرداخت شده" />
+        <InvoiceCard title="جمع کل" Icon={ShoppingCart}/>
+        <InvoiceCard title="تخفیف" Icon={Tag}/>
+        <InvoiceCard title="مالیات (%)" Icon={Calculator}/>
+        <InvoiceCard title="مبلغ پرداخت شده" Icon={Wallet}/>
       </div>
       <div className="grid grid-cols-[repeat(2,minmax(0,1fr))] gap-4">
         <InvoiceDetails invoice={invoice} />

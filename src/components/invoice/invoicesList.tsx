@@ -8,7 +8,7 @@ const data = [
     billNumber: "FYB-2026113-1451",
     invoiceCreationDate: "2026-11-11",
     invoicePaymentDate: "2026-11-12",
-    name: "ssss",
+    name: "ali",
     phone: "09123456789",
     status: "paid",
     items: [
@@ -28,7 +28,7 @@ const data = [
     billNumber: "FYB-2026093-1451",
     invoiceCreationDate: "2026-11-11",
     invoicePaymentDate: "2026-11-12",
-    name: "ssss",
+    name: "reza",
     phone: "09123456789",
     status: "pending",
     items: [
@@ -48,7 +48,7 @@ const data = [
     billNumber: "FYB-2026083-1451",
     invoiceCreationDate: "2026-11-11",
     invoicePaymentDate: "2026-11-12",
-    name: "ssss",
+    name: "mammad",
     phone: "09123456789",
     status: "rejected",
     items: [
@@ -68,7 +68,7 @@ const data = [
     billNumber: "FYB-2026114-1451",
     invoiceCreationDate: "2026-11-11",
     invoicePaymentDate: "2026-11-12",
-    name: "ssss",
+    name: "hasan",
     phone: "09123456789",
     status: "paid",
     items: [
@@ -142,14 +142,14 @@ export default function InvoicesList() {
         </div>
       </div>
       <div className="grid grid-cols-[25px_repeat(7,minmax(0,1fr))] gap-2 px-2 bg-background-secondary rounded py-1">
-        <div className="flex items-center justify-center">#</div>
-        <div className="flex items-center justify-center">شماره فاکتور</div>
-        <div className="flex items-center justify-center">تاریخ صدور</div>
-        <div className="flex items-center justify-center">تاریخ پرداخت</div>
-        <div className="flex items-center justify-center">مشتری</div>
-        <div className="flex items-center justify-center">مبلغ کل</div>
-        <div className="flex items-center justify-center">وضعیت پرداخت</div>
-        <div className="flex items-center justify-center">عملیات</div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">#</div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">شماره فاکتور</div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">تاریخ صدور</div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">تاریخ پرداخت</div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">مشتری</div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">مبلغ کل</div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">وضعیت پرداخت</div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">عملیات</div>
       </div>
       {data.map((invoice) => {
         return (
