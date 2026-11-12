@@ -20,7 +20,6 @@ type InvoiceItemsListProps = {
 }
 
 export default function InvoiceItemsList({ invoice }:InvoiceItemsListProps) {
-  console.log(invoice , 555)
   const items = invoice.items;
 
   return (

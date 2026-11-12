@@ -4,7 +4,7 @@ import InvoiceCard from "../../../../components/invoice/singleInvoice/InvoiceCar
 import InvoiceCustomer from "../../../../components/invoice/singleInvoice/InvoiceCustomer";
 import InvoiceDetails from "../../../../components/invoice/singleInvoice/InvoiceDetails";
 import InvoiceItemsList from "../../../../components/invoice/singleInvoice/InvoiceItemsList";
-import { File , ShoppingCart, Tag , Calculator, Wallet} from "lucide-react";
+import { File, ShoppingCart, Tag, Calculator, Wallet } from "lucide-react";
 
 const invoices = [
   {
@@ -18,7 +18,7 @@ const invoices = [
     status: "paid",
     items: [
       {
-        discount: 0,
+        discount: 10,
         id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
         price: 1000,
         product: "asdsa",
@@ -152,7 +152,19 @@ export default async function page({ params }) {
     notFound();
   }
 
-  console.log(invoice);
+  const billTotalAmount = invoice.items.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0,
+  );
+
+  const billTotalDiscount = invoice.items.reduce(
+    (acc, item) => acc + item.price * item.quantity * (item.discount / 100),
+    0,
+  );
+
+  const netPaid = billTotalAmount - billTotalDiscount;
+
+  console.log(invoice, 7777);
   return (
     <div className="flex flex-col gap-y-4">
       <div className="flex justify-between items-center">
@@ -173,10 +185,10 @@ export default async function page({ params }) {
         </div>
       </div>
       <div className="grid grid-cols-[repeat(4,minmax(0,1fr))] gap-4">
-        <InvoiceCard title="جمع کل" Icon={ShoppingCart}/>
-        <InvoiceCard title="تخفیف" Icon={Tag}/>
-        <InvoiceCard title="مالیات (%)" Icon={Calculator}/>
-        <InvoiceCard title="مبلغ پرداخت شده" Icon={Wallet}/>
+        <InvoiceCard title="جمع کل" Icon={ShoppingCart} numberData={billTotalAmount} />
+        <InvoiceCard title="تخفیف" Icon={Tag} numberData={billTotalDiscount} />
+        <InvoiceCard title="مالیات (%)" Icon={Calculator} numberData="0"/>
+        <InvoiceCard title="مبلغ پرداخت شده" Icon={Wallet} numberData={netPaid} />
       </div>
       <div className="grid grid-cols-[repeat(2,minmax(0,1fr))] gap-4">
         <InvoiceDetails invoice={invoice} />

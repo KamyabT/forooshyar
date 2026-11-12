@@ -13,12 +13,20 @@ const data = [
     status: "paid",
     items: [
       {
-        discount: 0,
+        discount: 10,
         id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
         price: 1000,
         product: "asdsa",
         productDescription: "asdsad",
         quantity: 1,
+      },
+      {
+        discount: 0,
+        id: "8f0e0bd7-bds07-4463-bb1c-3eaa3ad71be66",
+        price: 1500,
+        product: "asdsa",
+        productDescription: "asdsad",
+        quantity: 10,
       },
     ],
   },
@@ -33,12 +41,20 @@ const data = [
     status: "pending",
     items: [
       {
-        discount: 0,
+        discount: 3,
         id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
         price: 1000,
         product: "asdsa",
         productDescription: "asdsad",
         quantity: 1,
+      },
+      {
+        discount: 5,
+        id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
+        price: 10400,
+        product: "asdsa",
+        productDescription: "asdsad",
+        quantity: 14,
       },
     ],
   },
@@ -142,14 +158,30 @@ export default function InvoicesList() {
         </div>
       </div>
       <div className="grid grid-cols-[25px_repeat(7,minmax(0,1fr))] gap-2 px-2 bg-background-secondary rounded py-1">
-        <div className="flex items-center justify-center text-[16px] py-2 font-medium">#</div>
-        <div className="flex items-center justify-center text-[16px] py-2 font-medium">شماره فاکتور</div>
-        <div className="flex items-center justify-center text-[16px] py-2 font-medium">تاریخ صدور</div>
-        <div className="flex items-center justify-center text-[16px] py-2 font-medium">تاریخ پرداخت</div>
-        <div className="flex items-center justify-center text-[16px] py-2 font-medium">مشتری</div>
-        <div className="flex items-center justify-center text-[16px] py-2 font-medium">مبلغ کل</div>
-        <div className="flex items-center justify-center text-[16px] py-2 font-medium">وضعیت پرداخت</div>
-        <div className="flex items-center justify-center text-[16px] py-2 font-medium">عملیات</div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">
+          #
+        </div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">
+          شماره فاکتور
+        </div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">
+          تاریخ صدور
+        </div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">
+          تاریخ پرداخت
+        </div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">
+          مشتری
+        </div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">
+          مبلغ کل
+        </div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">
+          وضعیت پرداخت
+        </div>
+        <div className="flex items-center justify-center text-[16px] py-2 font-medium">
+          عملیات
+        </div>
       </div>
       {data.map((invoice) => {
         return (

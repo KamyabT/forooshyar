@@ -34,7 +34,7 @@ const CustomerBox = ({ customerInfo, setCustomerInfo }: CustomerBoxProps) => {
           <label>انتخاب مشتری</label>
           <input
             type="text"
-            className="w-2/3  border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:border-blue-300"
+            className="w-2/3 border border-gray-300 px-3 py-1 rounded-md focus:outline-none focus:border-blue-300"
             placeholder="انتخاب مشتری"
             value={customerInfo?.name}
             onChange={(e) => setCustomerInfo({ ...customerInfo, name: e.target.value })}
