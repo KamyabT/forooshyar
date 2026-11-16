@@ -1,4 +1,5 @@
 import InvoicesListItem from "./InvoicesListItem";
+import InvoiceFilters from "../../components/invoice/InvoiceFilters";
 import Link from "next/link";
 
 const data = [
@@ -142,7 +143,7 @@ const data = [
 
 export default function InvoicesList() {
   return (
-    <div>
+    <div className="">
       <div className="flex justify-between mb-3">
         <div>
           <p className="font-bold text-[24px]">فاکتورها</p>
@@ -157,6 +158,7 @@ export default function InvoicesList() {
           </Link>
         </div>
       </div>
+      <InvoiceFilters />
       <div className="grid grid-cols-[25px_repeat(7,minmax(0,1fr))] gap-2 px-2 bg-background-secondary rounded py-1">
         <div className="flex items-center justify-center text-[16px] py-2 font-medium">
           #

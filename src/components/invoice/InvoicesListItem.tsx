@@ -9,11 +9,17 @@ type Invoice = {
   name: string;
   price: number;
   paymentStatus: string;
-  status: "paid" | "pending" | "rejected";
+  status: "paid" | "pending" | "rejected" | "canceled";
 };
 
 type InvoiceProps = {
   invoice: Invoice;
+};
+
+const statusDesigns = {
+  paid: "bg-green-400 rounded-md py-1",
+  pending: "bg-gray-300 rounded-md py-1",
+  rejected: "bg-red-300 rounded-md py-1",
 };
 
 export default function InvoicesListItem({ invoice }: InvoiceProps) {
@@ -46,8 +52,10 @@ export default function InvoicesListItem({ invoice }: InvoiceProps) {
       <div className="text-center text-[16px] py-1 font-normal">
         {netPaid.toLocaleString("fa-IR")}
       </div>
-      <div className="text-center text-[16px] py-1 font-normal">{invoice.status}</div>
-      <div className="text-center text-[16px] py-1 font-normal">
+      <div className={`text-center text-[16px] py-1 font-normal `}>
+        <span className={`${statusDesigns[invoice.status]}`}>{invoice.status}</span>
+      </div>
+      <div className="text-center text-[16px] py-1 font-normal justify-self-center">
         <Download />
       </div>
     </div>
