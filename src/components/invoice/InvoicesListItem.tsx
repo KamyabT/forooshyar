@@ -17,9 +17,16 @@ type InvoiceProps = {
 };
 
 const statusDesigns = {
-  paid: "bg-green-400 rounded-md py-1",
+  paid: "bg-green-500 rounded-md py-1",
   pending: "bg-gray-300 rounded-md py-1",
-  rejected: "bg-red-300 rounded-md py-1",
+  rejected: "bg-red-500 rounded-md py-1",
+};
+
+const statusLabels = {
+  paid: "پرداخت شده",
+  pending: "در انتظار پرداخت",
+  rejected: "رد شده",
+  canceled: "لغو شده",
 };
 
 export default function InvoicesListItem({ invoice }: InvoiceProps) {
@@ -35,9 +42,10 @@ export default function InvoicesListItem({ invoice }: InvoiceProps) {
 
   const netPaid = billTotalAmount - billTotalDiscount;
 
-  console.log(invoice, 660066);
+  const status = statusLabels[invoice.status];
+
   return (
-    <div className="grid grid-cols-[25px_repeat(7,minmax(0,1fr))] gap-2 px-2 bg-background border-b-1 border-b-gray-200 py-1 hover:bg-primary-hover">
+    <div className="grid grid-cols-[25px_repeat(7,minmax(0,1fr))] items-center gap-2 px-2 bg-background border-b-1 border-b-gray-200 py-1 hover:bg-primary-hover">
       <div className="text-center text-[16px] py-1 font-normal">
         {invoice.id.toLocaleString("fa-IR")}
       </div>
@@ -53,7 +61,7 @@ export default function InvoicesListItem({ invoice }: InvoiceProps) {
         {netPaid.toLocaleString("fa-IR")}
       </div>
       <div className={`text-center text-[16px] py-1 font-normal `}>
-        <span className={`${statusDesigns[invoice.status]}`}>{invoice.status}</span>
+        <span className={`${statusDesigns[invoice.status]} inline-flex justify-center w-32`}>{status}</span>
       </div>
       <div className="text-center text-[16px] py-1 font-normal justify-self-center">
         <Download />

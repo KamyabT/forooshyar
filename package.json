@@ -14,6 +14,7 @@
     "@fontsource-variable/vazirmatn": "^5.3.0",
     "@hookform/resolvers": "^5.9.1",
     "@react-pdf/renderer": "^4.9.0",
+    "axios": "^1.21.1",
     "class-variance-authority": "^0.7.1",
     "cn": "^0.2.6",
     "date-fns-jalali": "^4.4.0-0",
