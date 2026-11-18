@@ -29,39 +29,50 @@ const statusLabels = {
   canceled: "لغو شده",
 };
 
-export default function InvoicesListItem({ invoice }: InvoiceProps) {
-  const billTotalAmount = invoice.items.reduce(
+export default function InvoicesListItem({ invoice, index }: InvoiceProps) {
+
+  const items = invoice.expand.items;
+
+  const billTotalAmount = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0,
   );
 
-  const billTotalDiscount = invoice.items.reduce(
+  const billTotalDiscount = items.reduce(
     (acc, item) => acc + item.price * item.quantity * (item.discount / 100),
     0,
   );
 
   const netPaid = billTotalAmount - billTotalDiscount;
 
-  const status = statusLabels[invoice.status];
+  const status = statusLabels[invoice.invoiceStatus];
 
   return (
     <div className="grid grid-cols-[25px_repeat(7,minmax(0,1fr))] items-center gap-2 px-2 bg-background border-b-1 border-b-gray-200 py-1 hover:bg-primary-hover">
       <div className="text-center text-[16px] py-1 font-normal">
-        {invoice.id.toLocaleString("fa-IR")}
+        {(index + 1).toLocaleString("fa-IR")}
       </div>
-      <div className="text-center text-[16px] py-1 font-normal">{invoice.billNumber}</div>
+      <div className="text-center text-[16px] py-1 font-normal">
+        {invoice.invoiceNumber}
+      </div>
       <div className="text-center text-[16px] py-1 font-normal">
         {format(invoice.invoiceCreationDate, "yyyy/MM/dd")}
       </div>
       <div className="text-center text-[16px] py-1 font-normal">
         {format(invoice.invoicePaymentDate, "yyyy/MM/dd")}
       </div>
-      <div className="text-center text-[16px] py-1 font-normal">{invoice.name}</div>
+      <div className="text-center text-[16px] py-1 font-normal">
+        {`${invoice.customerName} ${invoice.customerLastName}`}
+      </div>
       <div className="text-center text-[16px] py-1 font-normal">
         {netPaid.toLocaleString("fa-IR")}
       </div>
       <div className={`text-center text-[16px] py-1 font-normal `}>
-        <span className={`${statusDesigns[invoice.status]} inline-flex justify-center w-32`}>{status}</span>
+        <span
+          className={`${statusDesigns[invoice.invoiceStatus]} inline-flex justify-center w-32`}
+        >
+          {status}
+        </span>
       </div>
       <div className="text-center text-[16px] py-1 font-normal justify-self-center">
         <Download />

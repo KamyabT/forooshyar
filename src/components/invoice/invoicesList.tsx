@@ -1,147 +1,14 @@
 import InvoicesListItem from "./InvoicesListItem";
 import InvoiceFilters from "../../components/invoice/InvoiceFilters";
 import Link from "next/link";
+import { getInvoices } from "../../services/invoices.service";
 
-const data = [
-  {
-    id: 1,
-    address: "aaaaa",
-    billNumber: "FYB-2026113-1451",
-    invoiceCreationDate: "2026-11-11",
-    invoicePaymentDate: "2026-11-12",
-    name: "ali",
-    phone: "09123456789",
-    status: "paid",
-    items: [
-      {
-        discount: 10,
-        id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
-        price: 1000,
-        product: "asdsa",
-        productDescription: "asdsad",
-        quantity: 1,
-      },
-      {
-        discount: 0,
-        id: "8f0e0bd7-bds07-4463-bb1c-3eaa3ad71be66",
-        price: 1500,
-        product: "asdsa",
-        productDescription: "asdsad",
-        quantity: 10,
-      },
-    ],
-  },
-  {
-    id: 2,
-    address: "sssss",
-    billNumber: "FYB-2026093-1451",
-    invoiceCreationDate: "2026-11-11",
-    invoicePaymentDate: "2026-11-12",
-    name: "reza",
-    phone: "09123456789",
-    status: "pending",
-    items: [
-      {
-        discount: 3,
-        id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
-        price: 1000,
-        product: "asdsa",
-        productDescription: "asdsad",
-        quantity: 1,
-      },
-      {
-        discount: 5,
-        id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
-        price: 10400,
-        product: "asdsa",
-        productDescription: "asdsad",
-        quantity: 14,
-      },
-    ],
-  },
-  {
-    id: 3,
-    address: "ddddd",
-    billNumber: "FYB-2026083-1451",
-    invoiceCreationDate: "2026-11-11",
-    invoicePaymentDate: "2026-11-12",
-    name: "mammad",
-    phone: "09123456789",
-    status: "rejected",
-    items: [
-      {
-        discount: 0,
-        id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
-        price: 1000,
-        product: "asdsa",
-        productDescription: "asdsad",
-        quantity: 1,
-      },
-    ],
-  },
-  {
-    id: 4,
-    address: "ddddd",
-    billNumber: "FYB-2026114-1451",
-    invoiceCreationDate: "2026-11-11",
-    invoicePaymentDate: "2026-11-12",
-    name: "hasan",
-    phone: "09123456789",
-    status: "paid",
-    items: [
-      {
-        discount: 0,
-        id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
-        price: 1000,
-        product: "asdsa",
-        productDescription: "asdsad",
-        quantity: 1,
-      },
-    ],
-  },
-  {
-    id: 5,
-    address: "ddddd",
-    billNumber: "FYB-20261020-1451",
-    invoiceCreationDate: "2026-11-11",
-    invoicePaymentDate: "2026-11-12",
-    name: "ssss",
-    phone: "09123456789",
-    status: "paid",
-    items: [
-      {
-        discount: 0,
-        id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
-        price: 1000,
-        product: "asdsa",
-        productDescription: "asdsad",
-        quantity: 1,
-      },
-    ],
-  },
-  {
-    id: 6,
-    address: "ddddd",
-    billNumber: "FYB-2026123-1451",
-    invoiceCreationDate: "2026-11-11",
-    invoicePaymentDate: "2026-11-12",
-    name: "ssss",
-    phone: "09123456789",
-    status: "pending",
-    items: [
-      {
-        discount: 0,
-        id: "8f0e0bd7-bd07-4463-bb1c-3eaa3a71be66",
-        price: 1000,
-        product: "asdsa",
-        productDescription: "asdsad",
-        quantity: 1,
-      },
-    ],
-  },
-];
 
-export default function InvoicesList() {
+export default async function InvoicesList() {
+  const response = await getInvoices();
+  const data = await response.data.items;
+
+
   return (
     <div className="">
       <div className="flex justify-between mb-3">
@@ -185,10 +52,10 @@ export default function InvoicesList() {
           عملیات
         </div>
       </div>
-      {data.map((invoice) => {
+      {data.map((invoice, index) => {
         return (
           <Link key={invoice.id} href={`invoices/${invoice.id}`}>
-            <InvoicesListItem invoice={invoice} />
+            <InvoicesListItem invoice={invoice} index={index}/>
           </Link>
         );
       })}

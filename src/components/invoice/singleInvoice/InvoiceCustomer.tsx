@@ -14,7 +14,7 @@ export default function InvoiceCustomer({ invoice }) {
         <div className="flex flex-col justify-center">
           <div className="flex items-center gap-x-2">
             <p className="text-[16px]">نام مشتری:</p>
-            <p className="text-[16px]">{invoice.name}</p>
+            <p className="text-[16px]">{`${invoice.customerName} ${invoice.customerLastName}`}</p>
           </div>
           <div className="flex items-center gap-x-2">
             <p className="text-[16px]">شماره تماس:</p>

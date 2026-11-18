@@ -11,7 +11,7 @@ export default function InvoiceDetails({ invoice }) {
       <div className="flex flex-col bg-background-third border-1 border-gray-200 p-3 rounded-lg h-full">
         <div className="flex justify-between items-center">
           <p className="text-[16px]">شماره فاکتور:</p>
-          <p className="text-[16px]">{invoice.billNumber}</p>
+          <p className="text-[16px]">{invoice.invoiceNumber}</p>
         </div>
         <div className="flex justify-between items-center">
           <p className="text-[16px]">تاریخ صدور:</p>
@@ -27,7 +27,7 @@ export default function InvoiceDetails({ invoice }) {
         </div>
         <div className="flex justify-between items-center">
           <p className="text-[16px]">وضعیت</p>
-          <p className="text-[16px]">{invoice.status}</p>
+          <p className="text-[16px]">{invoice.invoiceStatus}</p>
         </div>
       </div>
     </div>

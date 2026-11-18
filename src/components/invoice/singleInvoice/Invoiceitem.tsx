@@ -9,7 +9,7 @@ export default function Invoiceitem({ item, itemIndex }) {
         {itemIndex + 1}
       </div>
       <div className="py-2 mx-2">
-        <p className="text-[16px] py-1 font-normal">{item.product}</p>
+        <p className="text-[16px] py-1 font-normal">{item.productName}</p>
       </div>
       <div className="py-2 mx-2">
         <p className="text-[16px] py-1 font-normal">

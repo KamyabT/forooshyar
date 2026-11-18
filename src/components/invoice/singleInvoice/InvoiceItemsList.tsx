@@ -4,23 +4,25 @@ import { Box } from "lucide-react";
 import InvoiceItemsCalculations from "./InvoiceItemsCalculations";
 
 type Invoices = {
-  address: string,
-  billNumber: string,
-  id: number,
-  invoiceCreationDate: string,
-  invoicePaymentDate: string,
-  items: object,
-  name: string,
-  phone: string,
-  status: string
-}
+  address: string;
+  billNumber: string;
+  id: number;
+  invoiceCreationDate: string;
+  invoicePaymentDate: string;
+  items: object;
+  name: string;
+  phone: string;
+  status: string;
+};
 
 type InvoiceItemsListProps = {
-  invoice: Invoices
-}
+  invoice: Invoices;
+};
 
-export default function InvoiceItemsList({ invoice }:InvoiceItemsListProps) {
-  const items = invoice.items;
+export default function InvoiceItemsList({ items }: InvoiceItemsListProps) {
+
+  console.log(items , 77777)
+
 
   return (
     <div className="flex flex-col">
@@ -37,9 +39,9 @@ export default function InvoiceItemsList({ invoice }:InvoiceItemsListProps) {
         <div className="text-[16px] py-2 font-medium">مبلغ کل (تومان)</div>
       </div>
       {items.map((item, index) => {
-        return <InvoiceItem item={item} key={invoice.id} itemIndex={index} />;
+        return <InvoiceItem item={item} key={item.id} itemIndex={index} />;
       })}
-      <InvoiceItemsCalculations items={items}/>
+      <InvoiceItemsCalculations items={items} />
     </div>
   );
 }

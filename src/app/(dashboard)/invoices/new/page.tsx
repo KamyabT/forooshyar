@@ -14,6 +14,8 @@ import { pdf } from "@react-pdf/renderer";
 import InvoiceDocument from "@/components/invoice/InvoiceDocument";
 import billNumberGenerator from "../../../../components/invoice/utils/billNumberGenerator";
 
+import { createInvoice } from "@/services/invoices.service";
+
 const InvoiceGeneratorPage = () => {
   const [items, setItems] = useState<InvoiceItemType[]>([]);
 
@@ -149,7 +151,10 @@ const InvoiceGeneratorPage = () => {
     a.click();
 
     URL.revokeObjectURL(url);
+
+    createInvoice();
   }
+
 
   return (
     <>
